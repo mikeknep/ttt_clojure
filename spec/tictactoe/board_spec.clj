@@ -3,17 +3,11 @@
             [tictactoe.board :refer :all]))
 
 (describe "a board"
-  (it "has total number of spaces equal to the square of the size"
-    (should= 9 (count (spaces 3 {}))))
+  (it "is created with a length"
+    (should= 3 ((create-board 3) :length)))
 
-  (it "has 16 spaces if the size provided is 4"
-    (should= 16 (count (spaces 4 {}))))
+  (it "is created with empty spots"
+    (should= (repeat 9 nil) ((create-board 3) :spots)))
 
-  (it "can have an x in the first spot"
-    (should= :x (first (spaces 3 {0 :x}))))
-
-  (it "can have an o in the last spot"
-    (should= :o (last (spaces 3 {8 :o}))))
-
-  (it "can have tokens in various spots"
-    (should= [:x nil :o nil :o :x nil nil nil] (spaces 3 {0 :x 2 :o 4 :o 5 :x}))))
+  (it "has a number of spots equal to the square of the length"
+    (should= 16 (count ((create-board 4) :spots)))))
