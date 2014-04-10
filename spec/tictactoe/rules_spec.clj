@@ -23,13 +23,13 @@
       (let [tokens  [:x :x :x]]
         (should= :x (winner-in-collection? tokens))))
 
-    (it "returns nil if a collection has multiple tokens"
+    (it "returns false if a collection has multiple tokens"
       (let [tokens [:x :o :x]]
-        (should= nil (winner-in-collection? tokens))))
+        (should= false (winner-in-collection? tokens))))
 
-    (it "returns nil if a collection has all empty spaces"
+    (it "returns false if a collection has all empty spaces"
       (let [tokens [nil nil nil]]
-        (should= nil (winner-in-collection? tokens)))))
+        (should= false (winner-in-collection? tokens)))))
 
 
   (context "checking the whole board for a winner"
@@ -37,6 +37,6 @@
       (let [board {:size 3 :spots [:x nil nil :x nil nil :x nil nil]}]
         (should= :x (winner-on-board? board))))
 
-    (it "returns nil for a board with no winner"
+    (it "returns false for a board with no winner"
       (let [board {:size 3 :spots (repeat 9 nil)}]
-        (should= nil (winner-on-board? board))))))
+        (should= false (winner-on-board? board))))))
