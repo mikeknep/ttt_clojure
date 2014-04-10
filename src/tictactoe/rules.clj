@@ -18,6 +18,6 @@
          spots  (get board :spots)]
     (if (winner-in-collection? (values-at-indexes (first paths) spots))
       (winner-in-collection? (values-at-indexes (first paths) spots))
-      (if (= 0 (count paths))
+      (if (empty? paths)
         false
         (recur (rest paths) spots)))))
