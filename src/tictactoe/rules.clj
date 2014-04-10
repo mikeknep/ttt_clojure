@@ -25,3 +25,6 @@
    (take size (iterate (partial + (+ 1 size)) 0))
    (take size (iterate (partial + (- size 1)) (- size 1)))
    ])
+
+(defn all-winning-indexes [size]
+  (reduce into [(row-indexes size) (column-indexes size) (diagonal-indexes size)]))
