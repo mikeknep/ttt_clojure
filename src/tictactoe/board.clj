@@ -8,6 +8,6 @@
   (loop [indexes  indexes
          spots    spots
          tokens   []]
-    (if (= 0 (count indexes))
+    (if (empty? indexes)
       tokens
       (recur (rest indexes) spots (conj tokens (nth spots (first indexes)))))))
