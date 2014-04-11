@@ -1,6 +1,6 @@
-(ns tictactoe.simple_ai_spec
+(ns tictactoe.simple-ai-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.simple_ai :refer :all]))
+            [tictactoe.simple-ai :refer :all]))
 
 (describe "simple ai"
   (it "selects the first spot on an empty board"
