@@ -1,8 +1,8 @@
 (ns tictactoe.board)
 
-(defn create-board [length]
-  {:length  length
-   :spots   (repeat (* length length) nil)})
+(defn create-board [size]
+  {:size    size
+   :spots   (repeat (* size size) nil)})
 
 (defn values-at-indexes [indexes spots]
   (loop [indexes  indexes
