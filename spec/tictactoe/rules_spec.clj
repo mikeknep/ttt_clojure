@@ -7,6 +7,19 @@
     (let [spots [:x nil nil nil]]
       (should= false (valid-spot? spots 0))))
 
+  (context "determining whose turn it is"
+    (it "sets current token as :x for the first turn"
+      (let [spots (repeat 9 nil)]
+        (should= :x (current-token spots))))
+
+    (it "sets current token as :o when :x has played more turns than :o"
+      (let [spots [:x nil nil nil]]
+        (should= :o (current-token spots))))
+
+    (it "sets current token as :x when :x and :o have played an equal number of turns"
+      (let [spots [:x :o nil nil]]
+        (should= :x (current-token spots)))))
+
   (context "checking for a draw"
     (it "recognizes all spots as being taken"
       (let [spots [:x :o :x :o]]

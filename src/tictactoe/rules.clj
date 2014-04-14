@@ -5,6 +5,11 @@
 (defn valid-spot? [spots index]
   (= nil (spots index)))
 
+(defn current-token [spots]
+  (if (= (count (filter #{:x} spots)) (count (filter #{:o} spots)))
+    :x
+    :o))
+
 (defn all-spots-taken? [spots]
   (= 0 (count (filter (fn [spot] (= spot nil)) spots))))
 
