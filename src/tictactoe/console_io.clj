@@ -37,3 +37,9 @@
 
 (defn display-board [board]
   (println (format-board board)))
+
+(defn declare-draw []
+  (println "Cat's game!"))
+
+(defn declare-winner [winning-token]
+  (println (str (display-spot winning-token) " wins!")))
