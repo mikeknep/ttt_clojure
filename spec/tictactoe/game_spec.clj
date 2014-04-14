@@ -12,4 +12,16 @@
               :player-1 {:token :x :decision-maker choose-random-spot}
               :player-2 {:token :o :decision-maker choose-random-spot}}
       (with-in-str "3\neasy computer\neasy computer"
-        (create-game)))))
+        (create-game))))
+
+  (it "returns :player-1 given the :x token"
+    (let [game  {:board {:size 3 :spots (repeat 9 nil)}
+                 :player-1 {:token :x :decision-maker choose-random-spot}
+                 :player-2 {:token :o :decision-maker choose-random-spot}}]
+      (should= {:token :x :decision-maker choose-random-spot} (get-player game :x))))
+
+  (it "returns :player-2 given the :o token"
+    (let [game  {:board {:size 3 :spots (repeat 9 nil)}
+                 :player-1 {:token :x :decision-maker choose-random-spot}
+                 :player-2 {:token :o :decision-maker choose-random-spot}}]
+      (should= {:token :o :decision-maker choose-random-spot} (get-player game :o)))))

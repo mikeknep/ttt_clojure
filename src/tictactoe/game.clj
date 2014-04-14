@@ -7,3 +7,8 @@
   {:board     (create-board (get-board-size))
    :player-1  (create-player :x (get-player-decision-maker))
    :player-2  (create-player :o (get-player-decision-maker))})
+
+(defn get-player [game token]
+  (if (= :x token)
+    (get game :player-1)
+    (get game :player-2)))
