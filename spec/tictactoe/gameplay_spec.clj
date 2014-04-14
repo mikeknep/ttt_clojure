@@ -6,11 +6,11 @@
   (it "executes a valid move"
     (let [spots [nil nil nil nil]
           index 3
-          token "X"]
-      (should= [nil nil nil "X"] (take-turn spots index token))))
+          token :x]
+      (should= [nil nil nil :x] (take-turn spots index token))))
   
   (it "does not execute an invalid move"
-    (let [spots [nil nil nil "X"]
+    (let [spots [nil nil nil :x]
           index 3
-          token "O"]
-      (should= [nil nil nil "X"] (take-turn spots index token)))))
+          token :o]
+      (should= [nil nil nil :x] (take-turn spots index token)))))
