@@ -2,7 +2,7 @@
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.rules :refer [winner-on-board? get-winner]]))
 
-(defn get-move []
+(defn get-move [& args]
   (println "Where do you want to go next?")
   (read-string (read-line)))
 
