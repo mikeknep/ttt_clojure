@@ -39,4 +39,10 @@
     (let [game {:board {:size 3 :spots [nil nil nil nil nil nil nil nil nil]}
                 :player-1 {:token :x :decision-maker get-move}
                 :player-2 {:token :o :decision-maker choose-random-spot}}]
-      (should-contain "!\n" (with-out-str (with-in-str "0\n1\n2\n3\n4\n5\n6\n7\n8\n" (play-game game)))))))
+      (should-contain "!\n" (with-out-str (with-in-str "0\n1\n2\n3\n4\n5\n6\n7\n8\n" (play-game game))))))
+
+  (it "plays a whole game with two human players"
+    (let [game {:board {:size 3 :spots [nil nil nil nil nil nil nil nil nil]}
+                :player-1 {:token :x :decision-maker get-move}
+                :player-2 {:token :o :decision-maker get-move}}]
+      (should-contain "O wins!\n" (with-out-str (with-in-str "3\n2\n8\n1\n6\n0\n" (play-game game)))))))
