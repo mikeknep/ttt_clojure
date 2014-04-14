@@ -9,15 +9,23 @@
   (= 0 (count (filter (fn [spot] (= spot nil)) spots))))
 
 (defn winner-in-collection? [tokens]
-  (if (and (= 1 (count (distinct tokens))) (not= nil (first (distinct tokens))))
-    (first (distinct tokens))
-    false))
+  (and (= 1 (count (distinct tokens))) (not= nil (first (distinct tokens)))))
 
 (defn winner-on-board? [board]
   (loop [paths  (all-winning-indexes (get board :size))
          spots  (get board :spots)]
     (if (winner-in-collection? (values-at-indexes (first paths) spots))
-      (winner-in-collection? (values-at-indexes (first paths) spots))
+      true
       (if (empty? paths)
         false
         (recur (rest paths) spots)))))
+
+(defn game-over? [board]
+  (or (all-spots-taken? (get board :spots)) (winner-on-board? board)))
+
+(defn get-winner [board]
+  (loop [paths  (all-winning-indexes (get board :size))
+         spots  (get board :spots)]
+    (if (winner-in-collection? (values-at-indexes (first paths) spots))
+      (first (distinct (values-at-indexes (first paths) spots)))
+      (recur (rest paths) spots))))
