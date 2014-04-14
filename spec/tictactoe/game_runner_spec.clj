@@ -1,7 +1,8 @@
 (ns tictactoe.game-runner-spec
   (:require [speclj.core :refer :all]
             [tictactoe.game-runner :refer :all]
-            [tictactoe.simple-ai :refer [choose-random-spot]]))
+            [tictactoe.simple-ai :refer [choose-random-spot]]
+            [tictactoe.console-io :refer [get-move]]))
 
 (describe "game-runner"
   (around [it]
@@ -32,4 +33,10 @@
     (let [game  {:board {:size 3 :spots [nil nil nil nil nil nil nil nil nil]}
                  :player-1 {:token :x :decision-maker choose-random-spot}
                  :player-2 {:token :o :decision-maker choose-random-spot}}]
-      (should-contain "!\n" (with-out-str (play-game game))))))
+      (should-contain "!\n" (with-out-str (play-game game)))))
+
+  (it "plays a whole game with an easy computer and a human"
+    (let [game {:board {:size 3 :spots [nil nil nil nil nil nil nil nil nil]}
+                :player-1 {:token :x :decision-maker get-move}
+                :player-2 {:token :o :decision-maker choose-random-spot}}]
+      (should-contain "!\n" (with-out-str (with-in-str "0\n1\n2\n3\n4\n5\n6\n7\n8\n" (play-game game)))))))
