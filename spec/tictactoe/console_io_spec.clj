@@ -57,10 +57,16 @@
         (should= (str (format-board board) "\n")
           (with-out-str (display-board board))))))
 
-  (it "declares a draw"
-    (should= "Cat's game!\n"
-      (with-out-str (declare-draw))))
+  (context "declaring the outcome of the game"
+    (it "declares a draw"
+      (should= "Cat's game!\n"
+        (with-out-str (declare-draw))))
 
-  (it "declares a winner"
-    (should= "X wins!\n"
-      (with-out-str (declare-winner :x)))))
+    (it "declares a winner"
+      (should= "X wins!\n"
+        (with-out-str (declare-winner :x))))
+
+    (it "declares the correct result"
+      (let [board   {:size 3 :spots [:x :x :x nil nil nil nil nil nil]}]
+        (should= "X wins!\n"
+          (with-out-str (declare-result board)))))))

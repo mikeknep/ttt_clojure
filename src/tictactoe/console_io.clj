@@ -1,5 +1,6 @@
 (ns tictactoe.console-io
-  (:require [tictactoe.simple-ai :refer [choose-random-spot]]))
+  (:require [tictactoe.simple-ai :refer [choose-random-spot]]
+            [tictactoe.rules :refer [winner-on-board? get-winner]]))
 
 (defn get-move []
   (println "Where do you want to go next?")
@@ -43,3 +44,8 @@
 
 (defn declare-winner [winning-token]
   (println (str (display-spot winning-token) " wins!")))
+
+(defn declare-result [board]
+  (if (winner-on-board? board)
+    (declare-winner (get-winner board))
+    (declare-draw)))
