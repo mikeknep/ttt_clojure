@@ -3,6 +3,8 @@
             [tictactoe.console-io :refer :all]))
 
 (describe "console io"
+  (around [it]
+    (with-out-str (it)))
 
   (it "asks for a move and returns an integer"
     (should= 4 
