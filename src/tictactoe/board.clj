@@ -4,6 +4,10 @@
   {:size    size
    :spots   (repeat (* size size) nil)})
 
+(defn update-board [size spots]
+  {:size    size
+   :spots   spots})
+
 (defn values-at-indexes [indexes spots]
   (loop [indexes  indexes
          spots    spots
