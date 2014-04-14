@@ -1,6 +1,7 @@
 (ns tictactoe.console-io-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.console-io :refer :all]))
+            [tictactoe.console-io :refer :all]
+            [tictactoe.simple-ai :refer [choose-random-spot]]))
 
 (describe "console io"
   (around [it]
@@ -15,6 +16,17 @@
     (should= 3
       (with-in-str "3"
         (get-board-size))))
+
+  (context "defining player types"
+    (it "assigns the console-io get-move function to a human player"
+      (should= get-move
+        (with-in-str "human"
+          (get-player-decision-maker))))
+
+    (it "assigns the simple ai choose-random-move function to an easy computer player"
+      (should= choose-random-spot
+        (with-in-str "easy computer"
+          (get-player-decision-maker)))))
 
   (context "visually representing a board"
     (it "represents a spot played by :x as X"

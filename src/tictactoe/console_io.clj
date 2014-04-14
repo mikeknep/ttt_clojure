@@ -1,4 +1,5 @@
-(ns tictactoe.console-io)
+(ns tictactoe.console-io
+  (:require [tictactoe.simple-ai :refer [choose-random-spot]]))
 
 (defn get-move []
   (println "Where do you want to go next?")
@@ -7,6 +8,12 @@
 (defn get-board-size []
   (println "What size board do you want to play on?")
   (read-string (read-line)))
+
+(defn get-player-decision-maker []
+  (println "What kind of player is this? ('human' or 'easy computer')")
+  (case (read-line)
+        "human"           get-move
+        "easy computer"   choose-random-spot))
 
 (defn display-spot [spot]
   (case spot
