@@ -17,20 +17,18 @@
   (and (= 1 (count (distinct tokens))) (not= nil (first (distinct tokens)))))
 
 (defn winner-on-board? [board]
-  (loop [paths  (all-winning-indexes (get board :size))
-         spots  (get board :spots)]
-    (if (winner-in-collection? (values-at-indexes (first paths) spots))
+  (loop [paths  (all-winning-indexes (get board :size))]
+    (if (winner-in-collection? (values-at-indexes (first paths) (get board :spots)))
       true
       (if (empty? paths)
         false
-        (recur (rest paths) spots)))))
+        (recur (rest paths))))))
 
 (defn game-over? [board]
   (or (all-spots-taken? (get board :spots)) (winner-on-board? board)))
 
 (defn get-winner [board]
-  (loop [paths  (all-winning-indexes (get board :size))
-         spots  (get board :spots)]
-    (if (winner-in-collection? (values-at-indexes (first paths) spots))
-      (first (distinct (values-at-indexes (first paths) spots)))
-      (recur (rest paths) spots))))
+  (loop [paths  (all-winning-indexes (get board :size))]
+    (if (winner-in-collection? (values-at-indexes (first paths) (get board :spots)))
+      (first (distinct (values-at-indexes (first paths) (get board :spots))))
+      (recur (rest paths)))))
