@@ -54,7 +54,7 @@
 
     (it "prints a formatted board"
       (let [board   {:size 3 :spots (repeat 9 nil)}]
-        (should= (str (format-board board) "\n")
+        (should= (str "\n\n" (format-board board) "\n\n\n")
           (with-out-str (display-board board))))))
 
   (context "declaring the outcome of the game"

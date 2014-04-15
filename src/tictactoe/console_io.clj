@@ -37,7 +37,7 @@
       (recur (rest spots) size (str board-string (display-spot (first spots)) (pipe-or-newline spot-index size)) (inc spot-index)))))
 
 (defn display-board [board]
-  (println (format-board board)))
+  (println (str "\n\n" (format-board board) "\n\n")))
 
 (defn declare-draw []
   (println "Cat's game!"))
