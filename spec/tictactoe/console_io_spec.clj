@@ -17,6 +17,10 @@
       (with-in-str "3"
         (get-board-size))))
 
+  (it "says whose turn it is"
+    (should= "X's turn\n"
+      (with-out-str (declare-whose-turn "X"))))
+
   (context "defining player types"
     (it "assigns the console-io get-move function to a human player"
       (should= get-move

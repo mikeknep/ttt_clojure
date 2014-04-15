@@ -39,6 +39,9 @@
 (defn display-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))
 
+(defn declare-whose-turn [formatted-spot]
+  (println (str formatted-spot "'s turn")))
+
 (defn declare-draw []
   (println "Cat's game!"))
 
