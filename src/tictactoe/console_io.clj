@@ -29,12 +29,11 @@
 
 (defn format-board [board]
   (loop [spots          (get board :spots)
-         size           (get board :size)
          board-string   ""
          spot-index     0]
     (if (empty? spots)
       board-string
-      (recur (rest spots) size (str board-string (display-spot (first spots)) (pipe-or-newline spot-index size)) (inc spot-index)))))
+      (recur (rest spots) (str board-string (display-spot (first spots)) (pipe-or-newline spot-index (get board :size))) (inc spot-index)))))
 
 (defn display-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))
