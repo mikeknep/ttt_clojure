@@ -3,7 +3,7 @@
             [tictactoe.board :refer [values-at-indexes]]))
 
 (defn valid-spot? [spots index]
-  (= nil (spots index)))
+  (= nil (get spots index)))
 
 (defn current-token [spots]
   (if (= (count (filter #{:x} spots)) (count (filter #{:o} spots)))
