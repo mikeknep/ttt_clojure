@@ -5,6 +5,9 @@
 (defn valid-spot? [spots index]
   (= nil (get spots index)))
 
+(defn available-spots [spots]
+  (keep-indexed #(if (nil? %2) %1) spots))
+
 (defn current-token [spots]
   (if (= (count (filter #{:x} spots)) (count (filter #{:o} spots)))
     :x

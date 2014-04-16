@@ -7,6 +7,10 @@
     (let [spots [:x nil nil nil]]
       (should= false (valid-spot? spots 0))))
 
+  (it "returns the available spots"
+    (let [spots [:x nil nil :o]]
+      (should= [1 2] (available-spots spots))))
+
   (context "determining whose turn it is"
     (it "sets current token as :x for the first turn"
       (let [spots (repeat 9 nil)]
