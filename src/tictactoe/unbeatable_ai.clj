@@ -10,3 +10,13 @@
   (if (zero? (simple-board-score board))
     0
     (* (/ (simple-board-score board) (double depth)) (reduce * (repeat depth -1)))))
+
+(defn update-best-score [this-score best-score]
+  (if (> this-score best-score)
+    this-score
+    best-score))
+
+(defn update-best-spot [this-spot this-score best-spot best-score]
+  (if (> this-score best-score)
+    this-spot
+    best-spot))

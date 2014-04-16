@@ -24,4 +24,18 @@
       (should= 0.5 (score-board-with-depth @basic-win-board 2)))
 
     (it "scores a draw board at any depth 0"
-      (should= 0 (score-board-with-depth @draw-board 0)))))
+      (should= 0 (score-board-with-depth @draw-board 0))))
+
+  (context "updating the best score"
+    (it "changes the best score if the new score is better than the existing best score"
+      (should= 0.5 (update-best-score 0.5 -0.25)))
+
+    (it "doesn't change the best score if the new score is worse than the existing best score"
+      (should= -0.25 (update-best-score -0.5 -0.25))))
+
+  (context "updating the best move"
+    (it "changes the best move if the new move has a better score than the existing best move"
+      (should= 5 (update-best-spot 5 1.0 2 0.5)))
+
+    (it "does not change the best move if the new move has a worse score than the existing best move"
+      (should= 3 (update-best-spot 6 0.25 3 0.5)))))
