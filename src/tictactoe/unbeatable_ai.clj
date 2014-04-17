@@ -38,7 +38,7 @@
 (defn minimax [board current-token opponent-token depth]
   (if (game-over? board)
     (score-board-with-depth board depth)
-    (apply (min-or-max depth) (map minimax (map create-altered-board (repeat board) (available-spots (get board :spots)) (repeat opponent-token)) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
+    (apply (min-or-max depth) (map minimax (child-boards board opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
 
 
 (defn choose-best-spot [board current-token opponent-token]
