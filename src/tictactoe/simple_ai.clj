@@ -1,4 +1,4 @@
 (ns tictactoe.simple-ai)
 
-(defn choose-random-spot [spots]
-  (rand-nth (keep-indexed #(if (nil? %2) %1) spots)))
+(defn choose-random-spot [board & args]
+  (rand-nth (keep-indexed #(if (nil? %2) %1) (get board :spots))))
