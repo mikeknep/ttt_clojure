@@ -54,6 +54,14 @@
                                   nil nil nil
                                   nil nil nil]} (create-altered-board board 1 :o)))))
 
+  (context "determining min or max"
+    (it "applies the min function if depth is even"
+      (should= min (min-or-max 2)))
+
+    (it "applies the max function if depth is odd"
+      (should= max (min-or-max 3))))
+
+
 
   ;
   ; High-level minimax testing
