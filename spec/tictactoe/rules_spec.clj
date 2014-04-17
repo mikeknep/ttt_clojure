@@ -22,7 +22,11 @@
 
     (it "sets current token as :x when :x and :o have played an equal number of turns"
       (let [spots [:x :o nil nil]]
-        (should= :x (current-token spots)))))
+        (should= :x (current-token spots))))
+
+    (it "sets the opponent token as :o when it is :x's turn"
+      (let [spots [:x :o nil nil]]
+        (should= :o (opponent-token spots)))))
 
   (context "checking for a draw"
     (it "recognizes all spots as being taken"

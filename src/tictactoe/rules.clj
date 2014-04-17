@@ -13,6 +13,11 @@
     :x
     :o))
 
+(defn opponent-token [spots]
+  (if (= (count (filter #{:x} spots)) (count (filter #{:o} spots)))
+    :o
+    :x))
+
 (defn all-spots-taken? [spots]
   (= 0 (count (filter (fn [spot] (= spot nil)) spots))))
 
