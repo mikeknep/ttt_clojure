@@ -26,6 +26,9 @@
 (defn create-altered-board [board index token]
   (update-board (get board :size) (take-turn (get board :spots) index token)))
 
+(defn child-boards [board token]
+  (map create-altered-board (repeat board) (available-spots (get board :spots)) (repeat token)))
+
 (defn min-or-max [depth]
   (if (even? depth)
     min

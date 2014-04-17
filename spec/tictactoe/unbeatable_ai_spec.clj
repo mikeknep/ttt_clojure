@@ -45,14 +45,29 @@
     (it "does not change the best move if the new move has a worse score than the existing best move"
       (should= 3 (update-best-spot 6 0.25 3 0.5))))
 
-  (context "creating a hypothetical future board"
+  (context "creating hypothetical future boards"
     (it "creates a board with an updated spot"
       (let [board {:size 3 :spots [:x  nil nil
                                    nil nil nil
                                    nil nil nil]}]
         (should= {:size 3 :spots [:x  :o  nil
                                   nil nil nil
-                                  nil nil nil]} (create-altered-board board 1 :o)))))
+                                  nil nil nil]} (create-altered-board board 1 :o))))
+
+    (it "creates all potential child boards"
+      (let [board {:size 3 :spots [:x  :x  nil
+                                   :o  :o  nil
+                                   :x  :o  nil]}]
+        (should= [{:size 3 :spots [:x :x :x
+                                   :o :o nil
+                                   :x :o nil]}
+                  {:size 3 :spots [:x :x nil
+                                   :o :o :x
+                                   :x :o nil]}
+                  {:size 3 :spots [:x :x nil
+                                   :o :o nil
+                                   :x :o :x]}]
+          (child-boards board :x)))))
 
   (context "determining min or max"
     (it "applies the min function if depth is even"
