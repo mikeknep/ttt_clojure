@@ -26,12 +26,16 @@
 (defn create-altered-board [board index token]
   (update-board (get board :size) (take-turn (get board :spots) index token)))
 
+(defn min-or-max [depth]
+  (if (even? depth)
+    min
+    max))
 
 
 (defn minimax [board current-token opponent-token depth]
   (if (game-over? board)
     (score-board-with-depth board depth)
-    (apply min (map minimax (map create-altered-board (repeat board) (available-spots (get board :spots)) (repeat opponent-token)) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
+    (apply (min-or-max depth) (map minimax (map create-altered-board (repeat board) (available-spots (get board :spots)) (repeat opponent-token)) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
 
 
 (defn choose-best-spot [board current-token opponent-token]
