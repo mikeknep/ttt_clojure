@@ -85,7 +85,7 @@
                                      :x  nil :x]}]
           (should= 5 (choose-best-spot board :o :x)))))
 
-    (context "when multiple spots remain and none lead to immediate victory"
+    (context "blocking opponent victories"
       (it "blocks the opponent from winning on the next turn (version 1)"
         (let [board {:size 3 :spots [:o  :x  nil
                                      nil :x  nil
@@ -102,4 +102,10 @@
         (let [board {:size 3 :spots [:x nil :o
                                      :o :o  :x
                                      :x :x  nil]}]
-          (should= 8 (choose-best-spot board :o :x)))))))
+          (should= 8 (choose-best-spot board :o :x))))
+
+      (it "blocks the opponent from winning on the next turn (version 4)"
+        (let [board {:size 3 :spots [nil nil nil
+                                     :x  :o  nil
+                                     nil :o  :x]}]
+          (should= 1 (choose-best-spot board :x :o)))))))
