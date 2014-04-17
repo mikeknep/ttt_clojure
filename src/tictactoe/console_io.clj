@@ -1,5 +1,6 @@
 (ns tictactoe.console-io
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
+            [tictactoe.unbeatable-ai :refer [choose-best-spot]]
             [tictactoe.rules :refer [winner-on-board? get-winner]]))
 
 (defn get-move [& args]
@@ -11,10 +12,11 @@
   (read-string (read-line)))
 
 (defn get-player-decision-maker []
-  (println "What kind of player is this? ('human' or 'easy computer')")
+  (println "What kind of player is this? ('human', 'easy computer', or 'hard computer')")
   (case (read-line)
         "human"           get-move
-        "easy computer"   choose-random-spot))
+        "easy computer"   choose-random-spot
+        "hard computer"   choose-best-spot))
 
 (defn display-spot [spot]
   (case spot

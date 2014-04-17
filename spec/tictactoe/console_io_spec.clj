@@ -1,14 +1,15 @@
 (ns tictactoe.console-io-spec
   (:require [speclj.core :refer :all]
             [tictactoe.console-io :refer :all]
-            [tictactoe.simple-ai :refer [choose-random-spot]]))
+            [tictactoe.simple-ai :refer [choose-random-spot]]
+            [tictactoe.unbeatable-ai :refer [choose-best-spot]]))
 
 (describe "console io"
   (around [it]
     (with-out-str (it)))
 
   (it "asks for a move and returns an integer"
-    (should= 4 
+    (should= 4
       (with-in-str "4"
         (get-move))))
 
@@ -30,6 +31,11 @@
     (it "assigns the simple ai choose-random-move function to an easy computer player"
       (should= choose-random-spot
         (with-in-str "easy computer"
+          (get-player-decision-maker))))
+
+    (it "assigns the unbeatable ai choose-best-move function to a hard computer player"
+      (should= choose-best-spot
+        (with-in-str "hard computer"
           (get-player-decision-maker)))))
 
   (context "visually representing a board"
