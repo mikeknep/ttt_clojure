@@ -12,7 +12,7 @@
          counter      0]
     (if (= counter size)
       all-columns
-      (recur (conj all-columns (take size (iterate (partial + 3) counter)))(inc counter)))))
+      (recur (conj all-columns (take size (iterate (partial + size) counter)))(inc counter)))))
 
 (defn diagonal-indexes [size]
   [
