@@ -16,7 +16,7 @@
   (it "asks for a board size and returns an integer"
     (should= 3
       (with-in-str "3"
-        (get-board-size))))
+        (get-board-length))))
 
   (it "says whose turn it is"
     (should= "X's turn\n"

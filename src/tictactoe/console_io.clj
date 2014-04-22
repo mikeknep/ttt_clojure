@@ -1,7 +1,8 @@
 (ns tictactoe.console-io
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
-            [tictactoe.rules :refer [valid-spot? valid-board-size? valid-player-type? winner-present? get-winner]]))
+            [tictactoe.board :refer [board-length]]
+            [tictactoe.rules :refer [valid-spot? valid-board-length? valid-player-type? winner-present? get-winner]]))
 
 (defn get-move [board & args]
   (loop [prompt "Where do you want to go next?"]
@@ -11,13 +12,13 @@
         (read-string input)
         (recur "That is not a valid spot. Please input the index of the spot you want to play next as an integer.")))))
 
-(defn get-board-size []
-  (loop [prompt "What size board do you want to play on? (3 or 4)"]
+(defn get-board-length []
+  (loop [prompt "What board length do you want to play on? (3 or 4)"]
     (println prompt)
     (let [input (read-line)]
-      (if (valid-board-size? input)
+      (if (valid-board-length? input)
         (read-string input)
-        (recur "That is not a valid size. Please input the number of rows you want on the board (3 or 4) as an integer.")))))
+        (recur "That is not a valid length Please input the number of rows you want on the board (3 or 4) as an integer.")))))
 
 (defn get-player-decision-maker []
   (loop [prompt "What kind of player is this? ('human', 'easy computer' or 'hard computer')"]
@@ -36,19 +37,19 @@
         :o    "O"
         nil   " "))
 
-(defn border [spot-index board-size]
-  (if (== 0 (mod (+ 1 spot-index) board-size))
+(defn border [spot-index board-length]
+  (if (== 0 (mod (+ 1 spot-index) board-length))
     "\n"
     "|"))
 
 (defn format-board [board]
-  (let [board-size (Math/sqrt (count board))]
+  (let [length (board-length board)]
     (loop [board          board
            board-string   ""
            index          0]
       (if (empty? board)
         board-string
-        (recur (rest board) (str board-string (display-spot (first board)) (border index board-size)) (inc index))))))
+        (recur (rest board) (str board-string (display-spot (first board)) (border index length)) (inc index))))))
 
 (defn display-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))

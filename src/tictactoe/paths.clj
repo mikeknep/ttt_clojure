@@ -1,24 +1,24 @@
 (ns tictactoe.paths)
 
-(defn row-indexes [size]
+(defn row-indexes [length]
   (loop [all-rows   []
          counter    0]
-    (if (== counter size)
+    (if (== counter length)
       all-rows
-      (recur (conj all-rows (take size (iterate inc (* size counter)))) (inc counter)))))
+      (recur (conj all-rows (take length (iterate inc (* length counter)))) (inc counter)))))
 
-(defn column-indexes [size]
+(defn column-indexes [length]
   (loop [all-columns  []
          counter      0]
-    (if (== counter size)
+    (if (== counter length)
       all-columns
-      (recur (conj all-columns (take size (iterate (partial + size) counter)))(inc counter)))))
+      (recur (conj all-columns (take length (iterate (partial + length) counter)))(inc counter)))))
 
-(defn diagonal-indexes [size]
+(defn diagonal-indexes [length]
   [
-   (take size (iterate (partial + (+ 1 size)) 0))
-   (take size (iterate (partial + (- size 1)) (- size 1)))
+   (take length (iterate (partial + (+ 1 length)) 0))
+   (take length (iterate (partial + (- length 1)) (- length 1)))
    ])
 
-(defn all-winning-indexes [size]
-  (reduce into [(row-indexes size) (column-indexes size) (diagonal-indexes size)]))
+(defn all-winning-indexes [length]
+  (reduce into [(row-indexes length) (column-indexes length) (diagonal-indexes length)]))

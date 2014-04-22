@@ -1,9 +1,9 @@
 (ns tictactoe.rules
   (:require [tictactoe.paths :refer [all-winning-indexes]]
-            [tictactoe.board :refer [values-at-indexes]]))
+            [tictactoe.board :refer [board-length values-at-indexes]]))
 
-(defn valid-board-size? [chosen-size-input]
-  (contains? #{"3" "4"} chosen-size-input))
+(defn valid-board-length? [chosen-length-input]
+  (contains? #{"3" "4"} chosen-length-input))
 
 (defn valid-player-type? [chosen-player-type-input]
   (contains? #{"human" "easy computer" "hard computer"} chosen-player-type-input))
@@ -31,7 +31,7 @@
   (and (= 1 (count (distinct tokens))) (not= nil (first (distinct tokens)))))
 
 (defn winner-present? [board]
-  (loop [paths  (all-winning-indexes (Math/sqrt (count board)))]
+  (loop [paths  (all-winning-indexes (board-length board))]
     (if (winner-in-collection? (values-at-indexes (first paths) board))
       true
       (if (empty? paths)
@@ -42,7 +42,7 @@
   (or (all-spots-taken? board) (winner-present? board)))
 
 (defn get-winner [board]
-  (loop [paths  (all-winning-indexes (Math/sqrt (count board)))]
+  (loop [paths  (all-winning-indexes (board-length board))]
     (if (winner-in-collection? (values-at-indexes (first paths) board))
       (first (distinct (values-at-indexes (first paths) board)))
       (recur (rest paths)))))
