@@ -1,11 +1,15 @@
 (ns tictactoe.console-io
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
-            [tictactoe.rules :refer [valid-board-size? valid-player-type? winner-on-board? get-winner]]))
+            [tictactoe.rules :refer [valid-spot? valid-board-size? valid-player-type? winner-on-board? get-winner]]))
 
-(defn get-move [& args]
-  (println "Where do you want to go next?")
-  (read-string (read-line)))
+(defn get-move [board & args]
+  (loop [prompt "Where do you want to go next?"]
+    (println prompt)
+    (let [input (read-line)]
+      (if (valid-spot? (get board :spots) (read-string input))
+        (read-string input)
+        (recur "That is not a valid spot. Please input the index of the spot you want to play next as an integer.")))))
 
 (defn get-board-size []
   (loop [prompt "What size board do you want to play on? (3 or 4)"]
