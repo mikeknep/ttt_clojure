@@ -3,11 +3,11 @@
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
             [tictactoe.rules :refer [valid-spot? valid-board-size? valid-player-type? winner-present? get-winner]]))
 
-(defn get-move [board & args]
+(defn get-move [spots & args]
   (loop [prompt "Where do you want to go next?"]
     (println prompt)
     (let [input (read-line)]
-      (if (valid-spot? (get board :spots) (read-string input))
+      (if (valid-spot? spots (read-string input))
         (read-string input)
         (recur "That is not a valid spot. Please input the index of the spot you want to play next as an integer.")))))
 
@@ -36,21 +36,22 @@
         :o    "O"
         nil   " "))
 
-(defn pipe-or-newline [spot-index board-size]
-  (if (= 0 (mod (+ 1 spot-index) board-size))
+(defn border [spot-index board-size]
+  (if (== 0 (mod (+ 1 spot-index) board-size))
     "\n"
     "|"))
 
-(defn format-board [board]
-  (loop [spots          (get board :spots)
-         board-string   ""
-         spot-index     0]
-    (if (empty? spots)
-      board-string
-      (recur (rest spots) (str board-string (display-spot (first spots)) (pipe-or-newline spot-index (get board :size))) (inc spot-index)))))
+(defn format-board [spots]
+  (let [board-size (Math/sqrt (count spots))]
+    (loop [spots          spots
+           board-string   ""
+           spot-index     0]
+      (if (empty? spots)
+        board-string
+        (recur (rest spots) (str board-string (display-spot (first spots)) (border spot-index board-size)) (inc spot-index))))))
 
-(defn display-board [board]
-  (println (str "\n\n" (format-board board) "\n\n")))
+(defn display-board [spots]
+  (println (str "\n\n" (format-board spots) "\n\n")))
 
 (defn declare-whose-turn [formatted-spot]
   (println (str formatted-spot "'s turn")))
