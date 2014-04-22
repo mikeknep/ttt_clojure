@@ -9,6 +9,15 @@
   (it "does not recognize '3x3' as a valid board size"
     (should= false (valid-board-size? "3x3")))
 
+  (it "recognizes 'human' as a valid player type"
+    (should= true (valid-player-type? "human")))
+
+  (it "recognizes 'easy computer' as a valid player type"
+    (should= true (valid-player-type? "easy computer")))
+
+  (it "recognizes 'hard computer' as a valid player type"
+    (should= true (valid-player-type? "hard computer")))
+
   (it "knows a spot is not valid if it has been played"
     (let [spots [:x nil nil nil]]
       (should= false (valid-spot? spots 0))))

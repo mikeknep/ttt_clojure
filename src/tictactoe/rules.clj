@@ -5,6 +5,9 @@
 (defn valid-board-size? [chosen-size-input]
   (contains? #{"3" "4"} chosen-size-input))
 
+(defn valid-player-type? [chosen-player-type-input]
+  (contains? #{"human" "easy computer" "hard computer"} chosen-player-type-input))
+
 (defn valid-spot? [spots index]
   (= nil (get spots index)))
 
