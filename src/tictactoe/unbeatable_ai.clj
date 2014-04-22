@@ -12,16 +12,6 @@
     0
     (* (/ (simple-score spots) (double depth)) (reduce * (repeat depth -1)))))
 
-(defn update-best-score [this-score best-score]
-  (if (> this-score best-score)
-    this-score
-    best-score))
-
-(defn update-best-spot [this-spot this-score best-spot best-score]
-  (if (> this-score best-score)
-    this-spot
-    best-spot))
-
 (defn create-altered-board [spots index token]
   (take-turn spots index token))
 
@@ -50,6 +40,6 @@
             altered-board   (create-altered-board spots this-spot current-token)
             this-score      (minimax altered-board current-token opponent-token 0)]
         (recur
-          (update-best-score this-score best-score)
-          (update-best-spot this-spot this-score best-spot best-score)
+          (if (> this-score best-score) this-score best-score)
+          (if (> this-score best-score) this-spot best-spot)
           (rest open-spots))))))
