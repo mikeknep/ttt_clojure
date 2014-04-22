@@ -4,7 +4,7 @@
   (loop [spots    []
          counter  0]
     (if (= counter (* size size))
-      {:size size :spots spots}
+      spots
       (recur (conj spots nil) (inc counter)))))
 
 (defn values-at-indexes [indexes spots]

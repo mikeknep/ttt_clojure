@@ -3,14 +3,11 @@
             [tictactoe.board :refer :all]))
 
 (describe "a board"
-  (it "is created with a size"
-    (should= 3 ((create-board 3) :size)))
-
   (it "is created with empty spots"
-    (should= (repeat 9 nil) ((create-board 3) :spots)))
+    (should= (repeat 9 nil) (create-board 3)))
 
   (it "has a number of spots equal to the square of the length"
-    (should= 16 (count ((create-board 4) :spots))))
+    (should= 16 (count (create-board 4))))
 
   (it "returns the tokens at provided indexes"
     (let [indexes [0 2 4]
