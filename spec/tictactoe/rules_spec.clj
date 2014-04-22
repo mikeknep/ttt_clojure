@@ -78,23 +78,31 @@
 
   (context "checking the whole board for a winner"
     (it "returns true for a board with a winner"
-      (let [board {:size 3 :spots [:x nil nil :x nil nil :x nil nil]}]
-        (should= true (winner-on-board? board))))
+      (let [spots [:x nil nil
+                   :x nil nil
+                   :x nil nil]]
+        (should= true (winner-on-board? spots))))
 
     (it "returns false for a board with no winner"
-      (let [board {:size 3 :spots (repeat 9 nil)}]
-        (should= false (winner-on-board? board)))))
+      (let [spots (repeat 9 nil)]
+        (should= false (winner-on-board? spots)))))
 
 
   (context "declaring the game over"
     (it "declares the game to be over when there is a draw"
-      (let [board {:size 3 :spots [:x :o :x :x :o :x :o :x :o]}]
-        (should= true (game-over? board))))
+      (let [spots [:x :o :x
+                   :x :o :x
+                   :o :x :o]]
+        (should= true (game-over? spots))))
 
     (it "declares the game to be over when there is a winner"
-      (let [board {:size 3 :spots [:o :o :o :x nil :x :x nil :x]}]
-        (should= true (game-over? board)))))
+      (let [spots [:o :o  :o
+                   :x nil :x
+                   :x nil :x]]
+        (should= true (game-over? spots)))))
 
   (it "gets the winning token from a board with a winner"
-    (let [board {:size 3 :spots [:o :o :o :x nil :x :x nil :x]}]
-      (should= :o (get-winner board)))))
+    (let [spots [:o :o  :o
+                 :x nil :x
+                 :x nil :x]]
+      (should= :o (get-winner spots)))))
