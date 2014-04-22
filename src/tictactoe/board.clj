@@ -7,9 +7,9 @@
       spots
       (recur (conj spots nil) (inc counter)))))
 
-(defn values-at-indexes [indexes spots]
+(defn values-at-indexes [indexes board]
   (loop [indexes  indexes
          tokens   []]
     (if (empty? indexes)
       tokens
-      (recur (rest indexes) (conj tokens (nth spots (first indexes)))))))
+      (recur (rest indexes) (conj tokens (nth board (first indexes)))))))

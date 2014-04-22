@@ -4,14 +4,14 @@
             [tictactoe.gameplay :refer [take-turn]]))
 
 
-(defn play [spots player-x player-o]
-  (loop [spots spots]
-    (let [current-token   (current-token spots)
-          opponent-token  (opponent-token spots)
+(defn play [board player-x player-o]
+  (loop [board board]
+    (let [current-token   (current-token board)
+          opponent-token  (opponent-token board)
           current-player  (if (= :x current-token) player-x player-o)
           next-turn-fn    (get current-player :decision-maker)]
-      (display-board spots)
-      (if (game-over? spots)
-        (declare-result spots)
+      (display-board board)
+      (if (game-over? board)
+        (declare-result board)
         (do (declare-whose-turn (display-spot current-token))
-            (recur (take-turn spots (next-turn-fn spots current-token opponent-token) current-token)))))))
+            (recur (take-turn board (next-turn-fn board current-token opponent-token) current-token)))))))

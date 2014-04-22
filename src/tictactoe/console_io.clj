@@ -3,11 +3,11 @@
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
             [tictactoe.rules :refer [valid-spot? valid-board-size? valid-player-type? winner-present? get-winner]]))
 
-(defn get-move [spots & args]
+(defn get-move [board & args]
   (loop [prompt "Where do you want to go next?"]
     (println prompt)
     (let [input (read-line)]
-      (if (valid-spot? spots (read-string input))
+      (if (valid-spot? board (read-string input))
         (read-string input)
         (recur "That is not a valid spot. Please input the index of the spot you want to play next as an integer.")))))
 
@@ -41,17 +41,17 @@
     "\n"
     "|"))
 
-(defn format-board [spots]
-  (let [board-size (Math/sqrt (count spots))]
-    (loop [spots          spots
+(defn format-board [board]
+  (let [board-size (Math/sqrt (count board))]
+    (loop [board          board
            board-string   ""
-           spot-index     0]
-      (if (empty? spots)
+           index          0]
+      (if (empty? board)
         board-string
-        (recur (rest spots) (str board-string (display-spot (first spots)) (border spot-index board-size)) (inc spot-index))))))
+        (recur (rest board) (str board-string (display-spot (first board)) (border index board-size)) (inc index))))))
 
-(defn display-board [spots]
-  (println (str "\n\n" (format-board spots) "\n\n")))
+(defn display-board [board]
+  (println (str "\n\n" (format-board board) "\n\n")))
 
 (defn declare-whose-turn [formatted-spot]
   (println (str formatted-spot "'s turn")))
@@ -62,7 +62,7 @@
 (defn declare-winner [winning-token]
   (println (str (display-spot winning-token) " wins!")))
 
-(defn declare-result [spots]
-  (if (winner-present? spots)
-    (declare-winner (get-winner spots))
+(defn declare-result [board]
+  (if (winner-present? board)
+    (declare-winner (get-winner board))
     (declare-draw)))

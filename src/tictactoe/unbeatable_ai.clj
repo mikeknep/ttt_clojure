@@ -2,21 +2,21 @@
   (:require [tictactoe.rules :refer [available-spots game-over? all-spots-taken? winner-present?]]
             [tictactoe.gameplay :refer [take-turn]]))
 
-(defn simple-score [spots]
-  (if (winner-present? spots)
+(defn simple-score [board]
+  (if (winner-present? board)
     1.0
     0.0))
 
-(defn score-with-depth [spots depth]
-  (if (zero? (simple-score spots))
+(defn score-with-depth [board depth]
+  (if (zero? (simple-score board))
     0
-    (* (/ (simple-score spots) (double depth)) (reduce * (repeat depth -1)))))
+    (* (/ (simple-score board) (double depth)) (reduce * (repeat depth -1)))))
 
-(defn create-altered-board [spots index token]
-  (take-turn spots index token))
+(defn create-altered-board [board index token]
+  (take-turn board index token))
 
-(defn child-boards [spots token]
-  (map create-altered-board (repeat spots) (available-spots spots) (repeat token)))
+(defn child-boards [board token]
+  (map create-altered-board (repeat board) (available-spots board) (repeat token)))
 
 (defn min-or-max [depth]
   (if (even? depth)
@@ -24,20 +24,20 @@
     max))
 
 
-(defn minimax [spots current-token opponent-token depth]
-  (if (game-over? spots)
-    (score-with-depth spots depth)
-    (apply (min-or-max depth) (map minimax (child-boards spots opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
+(defn minimax [board current-token opponent-token depth]
+  (if (game-over? board)
+    (score-with-depth board depth)
+    (apply (min-or-max depth) (map minimax (child-boards board opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
 
 
-(defn choose-best-spot [spots current-token opponent-token]
+(defn choose-best-spot [board current-token opponent-token]
   (loop [best-score   (/ -1.0 0)
          best-spot    -1
-         open-spots   (available-spots spots)]
+         open-spots   (available-spots board)]
     (if (empty? open-spots)
       best-spot
       (let [this-spot       (first open-spots)
-            altered-board   (create-altered-board spots this-spot current-token)
+            altered-board   (create-altered-board board this-spot current-token)
             this-score      (minimax altered-board current-token opponent-token 0)]
         (recur
           (if (> this-score best-score) this-score best-score)
