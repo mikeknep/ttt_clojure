@@ -20,14 +20,11 @@
                (str legend-string (if (nil? (first board)) index " ") (border index length))
                (inc index))))))
 
-(defn display-legend [board]
-  (println (format-legend board)))
-
 
 (defn get-move [board & args]
   (loop [prompt "Where do you want to go next?"]
     (println prompt)
-    (display-legend board)
+    (println (format-legend board))
     (let [input (read-line)]
       (if (valid-spot? board (read-string input))
         (read-string input)
