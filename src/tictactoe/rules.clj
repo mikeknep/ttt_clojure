@@ -30,7 +30,7 @@
 (defn winner-in-collection? [tokens]
   (and (= 1 (count (distinct tokens))) (not= nil (first (distinct tokens)))))
 
-(defn winner-on-board? [spots]
+(defn winner-present? [spots]
   (loop [paths  (all-winning-indexes (Math/sqrt (count spots)))]
     (if (winner-in-collection? (values-at-indexes (first paths) spots))
       true
@@ -39,7 +39,7 @@
         (recur (rest paths))))))
 
 (defn game-over? [spots]
-  (or (all-spots-taken? spots) (winner-on-board? spots)))
+  (or (all-spots-taken? spots) (winner-present? spots)))
 
 (defn get-winner [spots]
   (loop [paths  (all-winning-indexes (Math/sqrt (count spots)))]

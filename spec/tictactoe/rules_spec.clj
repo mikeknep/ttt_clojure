@@ -81,11 +81,11 @@
       (let [spots [:x nil nil
                    :x nil nil
                    :x nil nil]]
-        (should= true (winner-on-board? spots))))
+        (should= true (winner-present? spots))))
 
     (it "returns false for a board with no winner"
       (let [spots (repeat 9 nil)]
-        (should= false (winner-on-board? spots)))))
+        (should= false (winner-present? spots)))))
 
 
   (context "declaring the game over"

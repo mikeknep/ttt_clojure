@@ -1,7 +1,7 @@
 (ns tictactoe.console-io
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
-            [tictactoe.rules :refer [valid-spot? valid-board-size? valid-player-type? winner-on-board? get-winner]]))
+            [tictactoe.rules :refer [valid-spot? valid-board-size? valid-player-type? winner-present? get-winner]]))
 
 (defn get-move [board & args]
   (loop [prompt "Where do you want to go next?"]
@@ -62,6 +62,6 @@
   (println (str (display-spot winning-token) " wins!")))
 
 (defn declare-result [spots]
-  (if (winner-on-board? spots)
+  (if (winner-present? spots)
     (declare-winner (get-winner spots))
     (declare-draw)))
