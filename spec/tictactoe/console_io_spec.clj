@@ -73,12 +73,7 @@
       (let [board [nil :x :o
                    nil :x :o
                    nil :o :x]]
-        (should= "0| | \n3| | \n6| | \n" (format-legend board))))
-
-    (it "prints a formatted legend"
-      (let [board (repeat 9 nil)]
-        (should= (str "\n\n" (format-legend board) "\n\n\n")
-          (with-out-str (display-legend board))))))
+        (should= "0| | \n3| | \n6| | \n" (format-legend board)))))
 
   (context "declaring the outcome of the game"
     (it "declares a draw"

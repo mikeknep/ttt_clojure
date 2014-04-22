@@ -4,9 +4,30 @@
             [tictactoe.board :refer [board-length]]
             [tictactoe.rules :refer [valid-spot? valid-board-length? valid-player-type? winner-present? get-winner]]))
 
+(defn border [spot-index board-length]
+  (if (== 0 (mod (+ 1 spot-index) board-length))
+    "\n"
+    "|"))
+
+(defn format-legend [board]
+  (let [length (board-length board)]
+    (loop [board          board
+           legend-string  ""
+           index          0]
+      (if (empty? board)
+        legend-string
+        (recur (rest board)
+               (str legend-string (if (nil? (first board)) index " ") (border index length))
+               (inc index))))))
+
+(defn display-legend [board]
+  (println (format-legend board)))
+
+
 (defn get-move [board & args]
   (loop [prompt "Where do you want to go next?"]
     (println prompt)
+    (display-legend board)
     (let [input (read-line)]
       (if (valid-spot? board (read-string input))
         (read-string input)
@@ -37,11 +58,6 @@
         :o    "O"
         nil   " "))
 
-(defn border [spot-index board-length]
-  (if (== 0 (mod (+ 1 spot-index) board-length))
-    "\n"
-    "|"))
-
 (defn format-board [board]
   (let [length (board-length board)]
     (loop [board          board
@@ -53,22 +69,8 @@
                (str board-string (display-spot (first board)) (border index length))
                (inc index))))))
 
-(defn format-legend [board]
-  (let [length (board-length board)]
-    (loop [board          board
-           legend-string  ""
-           index          0]
-      (if (empty? board)
-        legend-string
-        (recur (rest board)
-               (str legend-string (if (nil? (first board)) index " ") (border index length))
-               (inc index))))))
-
 (defn display-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))
-
-(defn display-legend [board]
-  (println (str "\n\n" (format-legend board) "\n\n")))
 
 (defn declare-whose-turn [formatted-spot]
   (println (str formatted-spot "'s turn")))
