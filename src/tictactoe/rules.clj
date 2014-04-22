@@ -2,6 +2,9 @@
   (:require [tictactoe.board-shaper :refer [all-winning-indexes]]
             [tictactoe.board :refer [values-at-indexes]]))
 
+(defn valid-board-size? [chosen-size-input]
+  (contains? #{"3" "4"} chosen-size-input))
+
 (defn valid-spot? [spots index]
   (= nil (get spots index)))
 
