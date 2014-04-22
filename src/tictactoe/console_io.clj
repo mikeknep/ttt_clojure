@@ -49,10 +49,26 @@
            index          0]
       (if (empty? board)
         board-string
-        (recur (rest board) (str board-string (display-spot (first board)) (border index length)) (inc index))))))
+        (recur (rest board)
+               (str board-string (display-spot (first board)) (border index length))
+               (inc index))))))
+
+(defn format-legend [board]
+  (let [length (board-length board)]
+    (loop [board          board
+           legend-string  ""
+           index          0]
+      (if (empty? board)
+        legend-string
+        (recur (rest board)
+               (str legend-string (if (nil? (first board)) index " ") (border index length))
+               (inc index))))))
 
 (defn display-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))
+
+(defn display-legend [board]
+  (println (str "\n\n" (format-legend board) "\n\n")))
 
 (defn declare-whose-turn [formatted-spot]
   (println (str formatted-spot "'s turn")))

@@ -59,13 +59,26 @@
         (should= " | | \n | | \n | | \n" (format-board board))))
 
     (it "converts a board with spots that have been played into a string representation of a board with moves"
-      (let [board [nil :x :o nil :x :o nil :o :x]]
+      (let [board [nil :x :o
+                   nil :x :o
+                   nil :o :x]]
         (should= " |X|O\n |X|O\n |O|X\n" (format-board board))))
 
     (it "prints a formatted board"
       (let [board (repeat 9 nil)]
         (should= (str "\n\n" (format-board board) "\n\n\n")
-          (with-out-str (display-board board))))))
+          (with-out-str (display-board board)))))
+
+    (it "converts a board into a string legend representing the available spaces"
+      (let [board [nil :x :o
+                   nil :x :o
+                   nil :o :x]]
+        (should= "0| | \n3| | \n6| | \n" (format-legend board))))
+
+    (it "prints a formatted legend"
+      (let [board (repeat 9 nil)]
+        (should= (str "\n\n" (format-legend board) "\n\n\n")
+          (with-out-str (display-legend board))))))
 
   (context "declaring the outcome of the game"
     (it "declares a draw"
