@@ -1,8 +1,8 @@
-(ns tictactoe.board-shaper-spec
+(ns tictactoe.paths-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.board-shaper :refer :all]))
+            [tictactoe.paths :refer :all]))
 
-(describe "board-shaper"
+(describe "paths"
   (context "shaping a 3x3 board"
     (it "determines the row indexes"
       (should= [[0 1 2] [3 4 5] [6 7 8]] (row-indexes 3)))

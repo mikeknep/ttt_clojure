@@ -1,5 +1,5 @@
 (ns tictactoe.rules
-  (:require [tictactoe.board-shaper :refer [all-winning-indexes]]
+  (:require [tictactoe.paths :refer [all-winning-indexes]]
             [tictactoe.board :refer [values-at-indexes]]))
 
 (defn valid-board-size? [chosen-size-input]

@@ -1,4 +1,4 @@
-(ns tictactoe.board-shaper)
+(ns tictactoe.paths)
 
 (defn row-indexes [size]
   (loop [all-rows   []
