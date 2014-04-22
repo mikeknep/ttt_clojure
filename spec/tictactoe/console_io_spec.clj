@@ -81,4 +81,11 @@
                    nil nil nil
                    nil nil nil]]
         (should= "X wins!\n"
-          (with-out-str (declare-result board)))))))
+          (with-out-str (declare-result board))))))
+
+  (context "asking to play again"
+    (it "returns true if the human wants to play again"
+      (should= true (with-in-str "y" (play-again?))))
+
+    (it "returns false if the human does not want to play again"
+      (should= false (with-in-str "n" (play-again?))))))

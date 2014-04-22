@@ -67,3 +67,11 @@
   (if (winner-present? board)
     (declare-winner (get-winner board))
     (declare-draw)))
+
+(defn play-again? []
+  (loop [prompt "Play again? (y/n)"]
+    (println prompt)
+    (case (read-line)
+          "y"   true
+          "n"   false
+          (recur "Do you want to play again or not? (y/n)"))))
