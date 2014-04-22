@@ -3,15 +3,15 @@
             [tictactoe.board :refer [update-board]]
             [tictactoe.gameplay :refer [take-turn]]))
 
-(defn simple-board-score [spots]
+(defn simple-score [spots]
   (if (winner-on-board? spots)
     1.0
     0.0))
 
-(defn score-board-with-depth [spots depth]
-  (if (zero? (simple-board-score spots))
+(defn score-with-depth [spots depth]
+  (if (zero? (simple-score spots))
     0
-    (* (/ (simple-board-score spots) (double depth)) (reduce * (repeat depth -1)))))
+    (* (/ (simple-score spots) (double depth)) (reduce * (repeat depth -1)))))
 
 (defn update-best-score [this-score best-score]
   (if (> this-score best-score)
@@ -37,7 +37,7 @@
 
 (defn minimax [spots current-token opponent-token depth]
   (if (game-over? spots)
-    (score-board-with-depth spots depth)
+    (score-with-depth spots depth)
     (apply (min-or-max depth) (map minimax (child-boards spots opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
 
 
