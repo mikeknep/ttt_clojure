@@ -6,6 +6,9 @@
   (it "recognizes '3' as a valid board size"
     (should= true (valid-board-size? "3")))
 
+  (it "does not recognize '3x3' as a valid board size"
+    (should= false (valid-board-size? "3x3")))
+
   (it "knows a spot is not valid if it has been played"
     (let [spots [:x nil nil nil]]
       (should= false (valid-spot? spots 0))))
