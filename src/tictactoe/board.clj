@@ -7,10 +7,6 @@
       {:size size :spots spots}
       (recur (conj spots nil) (inc counter)))))
 
-(defn update-board [size spots]
-  {:size    size
-   :spots   spots})
-
 (defn values-at-indexes [indexes spots]
   (loop [indexes  indexes
          tokens   []]

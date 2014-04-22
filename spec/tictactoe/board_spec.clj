@@ -15,9 +15,4 @@
   (it "returns the tokens at provided indexes"
     (let [indexes [0 2 4]
           spots   [:x nil :o nil nil]]
-      (should= [:x :o nil] (values-at-indexes indexes spots))))
-
-  (it "updates the spots on the board"
-    (let [board     {:size 3 :spots (repeat 9 nil)}
-          new-spots [:x nil nil nil nil nil nil nil nil]]
-      (should= {:size 3 :spots [:x nil nil nil nil nil nil nil nil]} (update-board (get board :size) new-spots)))))
+      (should= [:x :o nil] (values-at-indexes indexes spots)))))

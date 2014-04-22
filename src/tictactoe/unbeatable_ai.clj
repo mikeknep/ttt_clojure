@@ -1,6 +1,5 @@
 (ns tictactoe.unbeatable-ai
   (:require [tictactoe.rules :refer [available-spots game-over? all-spots-taken? winner-on-board?]]
-            [tictactoe.board :refer [update-board]]
             [tictactoe.gameplay :refer [take-turn]]))
 
 (defn simple-score [spots]
