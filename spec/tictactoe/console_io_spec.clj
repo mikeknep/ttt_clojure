@@ -77,6 +77,8 @@
         (with-out-str (declare-winner :x))))
 
     (it "declares the correct result"
-      (let [board   {:size 3 :spots [:x :x :x nil nil nil nil nil nil]}]
+      (let [spots [:x  :x  :x
+                   nil nil nil
+                   nil nil nil]]
         (should= "X wins!\n"
-          (with-out-str (declare-result board)))))))
+          (with-out-str (declare-result spots)))))))

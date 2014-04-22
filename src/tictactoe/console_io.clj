@@ -61,7 +61,7 @@
 (defn declare-winner [winning-token]
   (println (str (display-spot winning-token) " wins!")))
 
-(defn declare-result [board]
-  (if (winner-on-board? board)
-    (declare-winner (get-winner board))
+(defn declare-result [spots]
+  (if (winner-on-board? spots)
+    (declare-winner (get-winner spots))
     (declare-draw)))
