@@ -3,24 +3,33 @@
             [tictactoe.rules :refer :all]))
 
 (describe "rules"
-  (it "recognizes '3' as a valid board size"
-    (should= true (valid-board-size? "3")))
+  (context "determining board size"
+    (it "recognizes '3' as a valid board size"
+      (should= true (valid-board-size? "3")))
 
-  (it "does not recognize '3x3' as a valid board size"
-    (should= false (valid-board-size? "3x3")))
+    (it "does not recognize '3x3' as a valid board size"
+      (should= false (valid-board-size? "3x3"))))
 
-  (it "recognizes 'human' as a valid player type"
-    (should= true (valid-player-type? "human")))
+  (context "determining player types"
+    (it "recognizes 'human' as a valid player type"
+      (should= true (valid-player-type? "human")))
 
-  (it "recognizes 'easy computer' as a valid player type"
-    (should= true (valid-player-type? "easy computer")))
+    (it "recognizes 'easy computer' as a valid player type"
+      (should= true (valid-player-type? "easy computer")))
 
-  (it "recognizes 'hard computer' as a valid player type"
-    (should= true (valid-player-type? "hard computer")))
+    (it "recognizes 'hard computer' as a valid player type"
+      (should= true (valid-player-type? "hard computer"))))
 
-  (it "knows a spot is not valid if it has been played"
-    (let [spots [:x nil nil nil]]
-      (should= false (valid-spot? spots 0))))
+  (context "determining spot validity"
+    (with spots [nil :x nil nil])
+    (it "knows a spot is not valid if it has been played"
+      (should= false (valid-spot? @spots 1)))
+
+    (it "knows a spot is not valid if it is less than 0"
+      (should= false (valid-spot? @spots -1)))
+
+    (it "knows a spot is not valid if it is greater than or equal to the number of spots"
+      (should= false (valid-spot? @spots 4))))
 
   (it "returns the available spots"
     (let [spots [:x nil nil :o]]

@@ -1,7 +1,7 @@
 (ns tictactoe.console-io
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
-            [tictactoe.rules :refer [valid-board-size? winner-on-board? get-winner]]))
+            [tictactoe.rules :refer [valid-board-size? valid-player-type? winner-on-board? get-winner]]))
 
 (defn get-move [& args]
   (println "Where do you want to go next?")
@@ -16,11 +16,15 @@
         (recur "That is not a valid size. Please input the number of rows you want on the board (3 or 4) as an integer.")))))
 
 (defn get-player-decision-maker []
-  (println "What kind of player is this? ('human', 'easy computer', or 'hard computer')")
-  (case (read-line)
-        "human"           get-move
-        "easy computer"   choose-random-spot
-        "hard computer"   choose-best-spot))
+  (loop [prompt "What kind of player is this? ('human', 'easy computer' or 'hard computer')"]
+    (println prompt)
+    (let [input (read-line)]
+      (if (valid-player-type? input)
+        (case input
+          "human"         get-move
+          "easy computer" choose-random-spot
+          "hard computer" choose-best-spot)
+        (recur "That is not a valid player type. Please select 'human', 'easy computer', or 'hard computer'.")))))
 
 (defn display-spot [spot]
   (case spot

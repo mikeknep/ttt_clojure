@@ -9,7 +9,7 @@
   (contains? #{"human" "easy computer" "hard computer"} chosen-player-type-input))
 
 (defn valid-spot? [spots index]
-  (= nil (get spots index)))
+  (and (= nil (get spots index)) (>= index 0) (< index (count spots))))
 
 (defn available-spots [spots]
   (keep-indexed #(if (nil? %2) %1) spots))
