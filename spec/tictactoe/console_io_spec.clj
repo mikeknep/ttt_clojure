@@ -13,7 +13,7 @@
       (with-in-str "3"
         (get-move [nil :x nil nil]))))
 
-  (it "asks for a board size and returns an integer"
+  (it "asks for a board length and returns an integer"
     (should= 3
       (with-in-str "3"
         (get-board-length))))
@@ -55,17 +55,17 @@
       (should= "\n" (border 2 3)))
 
     (it "converts a new/empty board into a string representation of an empty board"
-      (let [spots (repeat 9 nil)]
-        (should= " | | \n | | \n | | \n" (format-board spots))))
+      (let [board (repeat 9 nil)]
+        (should= " | | \n | | \n | | \n" (format-board board))))
 
     (it "converts a board with spots that have been played into a string representation of a board with moves"
-      (let [spots [nil :x :o nil :x :o nil :o :x]]
-        (should= " |X|O\n |X|O\n |O|X\n" (format-board spots))))
+      (let [board [nil :x :o nil :x :o nil :o :x]]
+        (should= " |X|O\n |X|O\n |O|X\n" (format-board board))))
 
     (it "prints a formatted board"
-      (let [spots (repeat 9 nil)]
-        (should= (str "\n\n" (format-board spots) "\n\n\n")
-          (with-out-str (display-board spots))))))
+      (let [board (repeat 9 nil)]
+        (should= (str "\n\n" (format-board board) "\n\n\n")
+          (with-out-str (display-board board))))))
 
   (context "declaring the outcome of the game"
     (it "declares a draw"
@@ -77,8 +77,8 @@
         (with-out-str (declare-winner :x))))
 
     (it "declares the correct result"
-      (let [spots [:x  :x  :x
+      (let [board [:x  :x  :x
                    nil nil nil
                    nil nil nil]]
         (should= "X wins!\n"
-          (with-out-str (declare-result spots)))))))
+          (with-out-str (declare-result board)))))))

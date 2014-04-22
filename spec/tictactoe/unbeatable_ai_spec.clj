@@ -35,16 +35,16 @@
 
   (context "creating hypothetical future boards"
     (it "creates a board with an updated spot"
-      (let [spots [:x  nil nil
+      (let [board [:x  nil nil
                    nil nil nil
                    nil nil nil]]
         (should= [:x  :o  nil
                   nil nil nil
                   nil nil nil]
-          (create-altered-board spots 1 :o))))
+          (create-altered-board board 1 :o))))
 
     (it "creates all potential child boards"
-      (let [spots [:x  :x  nil
+      (let [board [:x  :x  nil
                    :o  :o  nil
                    :x  :o  nil]]
         (should= [[:x :x :x
@@ -58,7 +58,7 @@
                   [:x :x nil
                    :o :o nil
                    :x :o :x]]
-          (child-boards spots :x)))))
+          (child-boards board :x)))))
 
   (context "determining min or max"
     (it "applies the min function if depth is even"
@@ -75,51 +75,51 @@
   (context "analyzing the board"
     (context "when there is only one open spot remaining"
       (it "chooses the last available spot on the board when it leads to a draw"
-        (let [spots [nil :x :o
+        (let [board [nil :x :o
                      :o  :x :x
                      :x  :o :o]]
-          (should= 0 (choose-best-spot spots :x :o))))
+          (should= 0 (choose-best-spot board :x :o))))
 
       (it "chooses the last available spot on the board when it leads to a win"
-        (let [spots [:x :o :x
+        (let [board [:x :o :x
                      :o :x :o
                      :o :x nil]]
-          (should= 8 (choose-best-spot spots :x :o)))))
+          (should= 8 (choose-best-spot board :x :o)))))
 
     (context "when there are multiple spots remaining, one of which leads to victory"
       (it "chooses the spot that leads to immediate victory (version 1)"
-        (let [spots [:x nil :o
+        (let [board [:x nil :o
                      :o :x nil
                      :x :o nil]]
-          (should= 8 (choose-best-spot spots :x :o))))
+          (should= 8 (choose-best-spot board :x :o))))
 
       (it "chooses the spot that leads to immediate victory (version 2)"
-        (let [spots [:x  :o  :x
+        (let [board [:x  :o  :x
                      :o  :o  nil
                      :x  nil :x]]
-          (should= 5 (choose-best-spot spots :o :x)))))
+          (should= 5 (choose-best-spot board :o :x)))))
 
     (context "blocking opponent victories"
       (it "blocks the opponent from winning on the next turn (version 1)"
-        (let [spots [:o  :x  nil
+        (let [board [:o  :x  nil
                      nil :x  nil
                      nil nil nil]]
-          (should= 7 (choose-best-spot spots :o :x))))
+          (should= 7 (choose-best-spot board :o :x))))
 
       (it "blocks the opponent from winning on the next turn (version 2)"
-        (let [spots [:x  :o   :x
+        (let [board [:x  :o   :x
                      :x  :o   nil
                      :o  nil  nil]]
-          (should= 7 (choose-best-spot spots :x :o))))
+          (should= 7 (choose-best-spot board :x :o))))
 
       (it "blocks the opponent from winning on the next turn (version 3)"
-        (let [spots [:x nil :o
+        (let [board [:x nil :o
                      :o :o  :x
                      :x :x  nil]]
-          (should= 8 (choose-best-spot spots :o :x))))
+          (should= 8 (choose-best-spot board :o :x))))
 
       (it "blocks the opponent from winning on the next turn (version 4)"
-        (let [spots [nil nil nil
+        (let [board [nil nil nil
                      :x  :o  nil
                      nil :o  :x]]
-          (should= 1 (choose-best-spot spots :x :o)))))))
+          (should= 1 (choose-best-spot board :x :o)))))))

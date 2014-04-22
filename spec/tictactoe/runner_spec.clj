@@ -12,13 +12,13 @@
 
   (with easy-o    {:token :o :decision-maker choose-random-spot})
 
-  (with win-coll  [:x  :x  :x
-                   :o  :o  nil
-                   nil nil nil])
+  (with win-board  [:x  :x  :x
+                    :o  :o  nil
+                    nil nil nil])
 
-  (with draw-coll [:x :o :x
-                   :x :o :x
-                   :o :x :o])
+  (with draw-board [:x :o :x
+                    :x :o :x
+                    :o :x :o])
 
   (with win-for-O [:o  :x  :x
                    nil :x  :x
@@ -30,11 +30,11 @@
 
   (it "ends a game that is a draw"
     (should-contain "Cat's game!\n"
-      (with-out-str (play @draw-coll @easy-x @easy-o))))
+      (with-out-str (play @draw-board @easy-x @easy-o))))
 
   (it "ends a game that has a winner"
     (should-contain "X wins!\n"
-      (with-out-str (play @win-coll @easy-x @easy-o))))
+      (with-out-str (play @win-board @easy-x @easy-o))))
 
   (it "plays O's turn and declares O the winner"
     (should-contain "O wins!\n"
