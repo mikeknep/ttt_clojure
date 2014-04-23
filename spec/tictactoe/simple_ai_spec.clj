@@ -3,7 +3,7 @@
             [tictactoe.simple-ai :refer :all]))
 
 (describe "simple ai"
-  (with board [nil nil :o
+  (with board [nil nil "X"
                nil nil nil
                nil nil nil])
 

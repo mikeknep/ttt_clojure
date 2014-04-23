@@ -20,16 +20,6 @@
 (defn available-spots [board]
   (keep-indexed #(if (nil? %2) %1) board))
 
-(defn current-token [board]
-  (if (= (count (filter #{:x} board)) (count (filter #{:o} board)))
-    :x
-    :o))
-
-(defn opponent-token [board]
-  (if (= (count (filter #{:x} board)) (count (filter #{:o} board)))
-    :o
-    :x))
-
 (defn all-spots-taken? [board]
   (= 0 (count (filter (fn [spot] (= spot nil)) board))))
 

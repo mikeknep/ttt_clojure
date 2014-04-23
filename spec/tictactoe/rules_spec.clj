@@ -28,7 +28,7 @@
       (should= false (valid-token? "X" "X"))))
 
   (context "determining spot validity"
-    (with board [nil :x nil nil])
+    (with board [nil "X" nil nil])
     (it "knows a spot is not valid if it has been played"
       (should= false (valid-spot? @board 1)))
 
@@ -39,43 +39,27 @@
       (should= false (valid-spot? @board 4))))
 
   (it "returns the available spots"
-    (let [board [:x nil nil :o]]
+    (let [board ["X" nil nil "O"]]
       (should= [1 2] (available-spots board))))
 
-  (context "determining whose turn it is"
-    (it "sets current token as :x for the first turn"
-      (let [board (repeat 9 nil)]
-        (should= :x (current-token board))))
-
-    (it "sets current token as :o when :x has played more turns than :o"
-      (let [board [:x nil nil nil]]
-        (should= :o (current-token board))))
-
-    (it "sets current token as :x when :x and :o have played an equal number of turns"
-      (let [board [:x :o nil nil]]
-        (should= :x (current-token board))))
-
-    (it "sets the opponent token as :o when it is :x's turn"
-      (let [board [:x :o nil nil]]
-        (should= :o (opponent-token board)))))
 
   (context "checking for a draw"
     (it "recognizes all spots as being taken"
-      (let [board [:x :o :x :o]]
+      (let [board ["X" "O" "X" "O"]]
         (should= true (all-spots-taken? board))))
 
     (it "recognizes spots still open to be played"
-      (let [board [:x :o :z nil]]
+      (let [board ["X" "O" "X" nil]]
         (should= false (all-spots-taken? board)))))
 
 
   (context "checking a single path for a winner"
     (it "returns true for a winning collection"
-      (let [tokens  [:x :x :x]]
+      (let [tokens  ["X" "X" "X"]]
         (should= true (winner-in-collection? tokens))))
 
     (it "returns false if a collection has multiple tokens"
-      (let [tokens [:x :o :x]]
+      (let [tokens ["X" "O" "X"]]
         (should= false (winner-in-collection? tokens))))
 
     (it "returns false if a collection has all empty spaces"
@@ -85,9 +69,9 @@
 
   (context "checking the whole board for a winner"
     (it "returns true for a board with a winner"
-      (let [board [:x nil nil
-                   :x nil nil
-                   :x nil nil]]
+      (let [board ["X" nil nil
+                   "X" nil nil
+                   "X" nil nil]]
         (should= true (winner-present? board))))
 
     (it "returns false for a board with no winner"
@@ -97,19 +81,19 @@
 
   (context "declaring the game over"
     (it "declares the game to be over when there is a draw"
-      (let [board [:x :o :x
-                   :x :o :x
-                   :o :x :o]]
+      (let [board ["X" "O" "X"
+                   "X" "O" "X"
+                   "O" "X" "O"]]
         (should= true (game-over? board))))
 
     (it "declares the game to be over when there is a winner"
-      (let [board [:o :o  :o
-                   :x nil :x
-                   :x nil :x]]
+      (let [board ["O" "O"  "O"
+                   "X" nil "X"
+                   "X" nil "X"]]
         (should= true (game-over? board)))))
 
   (it "gets the winning token from a board with a winner"
-    (let [board [:o :o  :o
-                 :x nil :x
-                 :x nil :x]]
-      (should= :o (get-winner board)))))
+    (let [board ["O" "O"  "O"
+                 "X" nil "X"
+                 "X" nil "X"]]
+      (should= "O" (get-winner board)))))

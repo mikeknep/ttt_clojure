@@ -14,5 +14,5 @@
 
   (it "returns the tokens at provided indexes"
     (let [indexes [0 2 4]
-          board   [:x nil :o nil nil]]
-      (should= [:x :o nil] (values-at-indexes indexes board)))))
+          board   ["X" nil "O" nil nil]]
+      (should= ["X" "O" nil] (values-at-indexes indexes board)))))

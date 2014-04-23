@@ -58,10 +58,7 @@
         (recur "That token is not valid. Please select a unique, one-character token.")))))
 
 (defn display-spot [spot]
-  (case spot
-        :x    "X"
-        :o    "O"
-        nil   " "))
+  (if (nil? spot) " " spot))
 
 (defn format-board [board]
   (let [length (board-length board)]

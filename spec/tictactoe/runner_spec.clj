@@ -8,21 +8,21 @@
   (around [it]
     (with-out-str (it)))
 
-  (with easy-x    {:token :x :decision-maker choose-random-spot})
+  (with easy-x    {:token "X" :decision-maker choose-random-spot})
 
-  (with easy-o    {:token :o :decision-maker choose-random-spot})
+  (with easy-o    {:token "O" :decision-maker choose-random-spot})
 
-  (with win-board  [:x  :x  :x
-                    :o  :o  nil
+  (with win-board  ["X"  "X"  "X"
+                    "O"  "O"  nil
                     nil nil nil])
 
-  (with draw-board [:x :o :x
-                    :x :o :x
-                    :o :x :o])
+  (with draw-board ["X" "O" "X"
+                    "X" "O" "X"
+                    "O" "X" "O"])
 
-  (with win-for-O [:o  :x  :x
-                   nil :x  :x
-                   :o  nil :o])
+  (with win-for-O ["O"  "X"  "X"
+                   nil "X"  "X"
+                   "O"  nil "O"])
 
   (with unplayed  [nil nil nil
                    nil nil nil
@@ -44,7 +44,7 @@
     (should-contain "O wins!\n"
       (with-out-str
         (with-in-str "n"
-          (play @win-for-O @easy-x @easy-o)))))
+          (play @win-for-O @easy-o @easy-x)))))
 
   (it "plays a whole game with two easy computer players"
     (should-contain "!\n"

@@ -3,11 +3,11 @@
             [tictactoe.unbeatable-ai :refer :all]))
 
 (describe "unbeatable ai"
-  (with draw      [:x :o :x
-                   :x :o :x
-                   :o :x :o])
+  (with draw      ["X" "O" "X"
+                   "X" "O" "X"
+                   "O" "X" "O"])
 
-  (with basic-win [:x  :x  :x
+  (with basic-win ["X" "X" "X"
                    nil nil nil
                    nil nil nil])
 
@@ -35,30 +35,30 @@
 
   (context "creating hypothetical future boards"
     (it "creates a board with an updated spot"
-      (let [board [:x  nil nil
+      (let [board ["X" nil nil
                    nil nil nil
                    nil nil nil]]
-        (should= [:x  :o  nil
+        (should= ["X" "O" nil
                   nil nil nil
                   nil nil nil]
-          (create-altered-board board 1 :o))))
+          (create-altered-board board 1 "O"))))
 
     (it "creates all potential child boards"
-      (let [board [:x  :x  nil
-                   :o  :o  nil
-                   :x  :o  nil]]
-        (should= [[:x :x :x
-                   :o :o nil
-                   :x :o nil]
+      (let [board ["X" "X" nil
+                   "O" "O" nil
+                   "X" "O" nil]]
+        (should= [["X" "X" "X"
+                   "O" "O" nil
+                   "X" "O" nil]
 
-                  [:x :x nil
-                   :o :o :x
-                   :x :o nil]
+                  ["X" "X" nil
+                   "O" "O" "X"
+                   "X" "O" nil]
 
-                  [:x :x nil
-                   :o :o nil
-                   :x :o :x]]
-          (child-boards board :x)))))
+                  ["X" "X" nil
+                   "O" "O" nil
+                   "X" "O" "X"]]
+          (child-boards board "X")))))
 
   (context "determining min or max"
     (it "applies the min function if depth is even"
@@ -75,51 +75,51 @@
   (context "analyzing the board"
     (context "when there is only one open spot remaining"
       (it "chooses the last available spot on the board when it leads to a draw"
-        (let [board [nil :x :o
-                     :o  :x :x
-                     :x  :o :o]]
-          (should= 0 (choose-best-spot board :x :o))))
+        (let [board [nil "X" "O"
+                     "O" "X" "X"
+                     "X" "O" "O"]]
+          (should= 0 (choose-best-spot board "X" "O"))))
 
       (it "chooses the last available spot on the board when it leads to a win"
-        (let [board [:x :o :x
-                     :o :x :o
-                     :o :x nil]]
-          (should= 8 (choose-best-spot board :x :o)))))
+        (let [board ["X" "O" "X"
+                     "O" "X" "O"
+                     "O" "X" nil]]
+          (should= 8 (choose-best-spot board "X" "O")))))
 
     (context "when there are multiple spots remaining, one of which leads to victory"
       (it "chooses the spot that leads to immediate victory (version 1)"
-        (let [board [:x nil :o
-                     :o :x nil
-                     :x :o nil]]
-          (should= 8 (choose-best-spot board :x :o))))
+        (let [board ["X" nil "O"
+                     "O" "X" nil
+                     "X" "O" nil]]
+          (should= 8 (choose-best-spot board "X" "O"))))
 
       (it "chooses the spot that leads to immediate victory (version 2)"
-        (let [board [:x  :o  :x
-                     :o  :o  nil
-                     :x  nil :x]]
-          (should= 5 (choose-best-spot board :o :x)))))
+        (let [board ["X" "O" "X"
+                     "O" "O" nil
+                     "X" nil "X"]]
+          (should= 5 (choose-best-spot board "O" "X")))))
 
     (context "blocking opponent victories"
       (it "blocks the opponent from winning on the next turn (version 1)"
-        (let [board [:o  :x  nil
-                     nil :x  nil
+        (let [board ["O" "X" nil
+                     nil "X" nil
                      nil nil nil]]
-          (should= 7 (choose-best-spot board :o :x))))
+          (should= 7 (choose-best-spot board "O" "X"))))
 
       (it "blocks the opponent from winning on the next turn (version 2)"
-        (let [board [:x  :o   :x
-                     :x  :o   nil
-                     :o  nil  nil]]
-          (should= 7 (choose-best-spot board :x :o))))
+        (let [board ["X" "O" "X"
+                     "X" "O" nil
+                     "O" nil nil]]
+          (should= 7 (choose-best-spot board "X" "O"))))
 
       (it "blocks the opponent from winning on the next turn (version 3)"
-        (let [board [:x nil :o
-                     :o :o  :x
-                     :x :x  nil]]
-          (should= 8 (choose-best-spot board :o :x))))
+        (let [board ["X" nil "O"
+                     "O" "O" "X"
+                     "X" "X" nil]]
+          (should= 8 (choose-best-spot board "O" "X"))))
 
       (it "blocks the opponent from winning on the next turn (version 4)"
         (let [board [nil nil nil
-                     :x  :o  nil
-                     nil :o  :x]]
-          (should= 1 (choose-best-spot board :x :o)))))))
+                     "X" "O" nil
+                     nil "O" "X"]]
+          (should= 1 (choose-best-spot board "X" "O")))))))

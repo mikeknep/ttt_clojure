@@ -11,7 +11,7 @@
   (it "asks for a move and returns an integer"
     (should= 3
       (with-in-str "3"
-        (get-move [nil :x nil nil]))))
+        (get-move [nil "X" nil nil]))))
 
   (it "asks for a board length and returns an integer"
     (should= 3
@@ -39,11 +39,8 @@
           (get-player-decision-maker)))))
 
   (context "visually representing a board"
-    (it "represents a spot played by :x as X"
-      (should= "X" (display-spot :x)))
-
-    (it "represents a spot played by :o as O"
-      (should= "O" (display-spot :o)))
+    (it "represents a played spot with the token"
+      (should= "X" (display-spot "X")))
 
     (it "represents an unplayed spot as a blank space"
       (should= " " (display-spot nil)))
@@ -59,9 +56,9 @@
         (should= " | | \n | | \n | | \n" (format-board board))))
 
     (it "converts a board with spots that have been played into a string representation of a board with moves"
-      (let [board [nil :x :o
-                   nil :x :o
-                   nil :o :x]]
+      (let [board [nil "X" "O"
+                   nil "X" "O"
+                   nil "O" "X"]]
         (should= " |X|O\n |X|O\n |O|X\n" (format-board board))))
 
     (it "prints a formatted board"
@@ -70,9 +67,9 @@
           (with-out-str (display-board board)))))
 
     (it "converts a board into a string legend representing the available spaces"
-      (let [board [nil :x :o
-                   nil :x :o
-                   nil :o :x]]
+      (let [board [nil "X" "O"
+                   nil "X" "O"
+                   nil "O" "X"]]
         (should= "0| | \n3| | \n6| | \n" (format-legend board)))))
 
   (context "declaring the outcome of the game"
@@ -82,10 +79,10 @@
 
     (it "declares a winner"
       (should= "X wins!\n"
-        (with-out-str (declare-winner :x))))
+        (with-out-str (declare-winner "X"))))
 
     (it "declares the correct result"
-      (let [board [:x  :x  :x
+      (let [board ["X"  "X"  "X"
                    nil nil nil
                    nil nil nil]]
         (should= "X wins!\n"
