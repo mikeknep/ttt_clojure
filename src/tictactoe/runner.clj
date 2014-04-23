@@ -1,6 +1,6 @@
 (ns tictactoe.runner
   (:require [tictactoe.rules :refer [game-over?]]
-            [tictactoe.console-io :refer [get-board-length get-player-decision-maker display-board display-spot declare-whose-turn declare-result play-again?]]
+            [tictactoe.console-io :refer [get-board-length get-player-decision-maker display-board declare-whose-turn declare-result play-again?]]
             [tictactoe.gameplay :refer [take-turn]]
             [tictactoe.board :refer [create-board]]
             [tictactoe.player :refer [create-player]]))

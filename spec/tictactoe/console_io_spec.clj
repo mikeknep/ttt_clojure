@@ -39,12 +39,6 @@
           (get-player-decision-maker)))))
 
   (context "visually representing a board"
-    (it "represents a played spot with the token"
-      (should= "X" (display-spot "X")))
-
-    (it "represents an unplayed spot as a blank space"
-      (should= " " (display-spot nil)))
-
     (it "displays a pipe to separate spaces in a row"
       (should= "|" (border 0 3)))
 

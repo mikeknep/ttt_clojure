@@ -57,9 +57,6 @@
         input
         (recur "That token is not valid. Please select a unique, one-character token.")))))
 
-(defn display-spot [spot]
-  (if (nil? spot) " " spot))
-
 (defn format-board [board]
   (let [length (board-length board)]
     (loop [board          board
@@ -68,20 +65,20 @@
       (if (empty? board)
         board-string
         (recur (rest board)
-               (str board-string (display-spot (first board)) (border index length))
+               (str board-string (if (nil? (first board)) " " (first board)) (border index length))
                (inc index))))))
 
 (defn display-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))
 
-(defn declare-whose-turn [formatted-spot]
-  (println (str formatted-spot "'s turn")))
+(defn declare-whose-turn [token]
+  (println (str token "'s turn")))
 
 (defn declare-draw []
   (println "Cat's game!"))
 
 (defn declare-winner [winning-token]
-  (println (str (display-spot winning-token) " wins!")))
+  (println (str winning-token " wins!")))
 
 (defn declare-result [board]
   (if (winner-present? board)
