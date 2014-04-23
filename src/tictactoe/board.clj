@@ -5,7 +5,8 @@
          counter  0]
     (if (= counter (* length length))
       spots
-      (recur (conj spots nil) (inc counter)))))
+      (recur (conj spots nil)
+             (inc counter)))))
 
 (defn board-length [board]
   (int (Math/sqrt (count board))))
@@ -15,4 +16,5 @@
          tokens   []]
     (if (empty? indexes)
       tokens
-      (recur (rest indexes) (conj tokens (nth board (first indexes)))))))
+      (recur (rest indexes)
+             (conj tokens (nth board (first indexes)))))))
