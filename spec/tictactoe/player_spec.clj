@@ -12,4 +12,7 @@
     (should= choose-random-spot ((create-player choose-random-spot "X") :decision-maker)))
 
   (it "is created with the console io's get-move function when it is a human player"
-    (should= get-move ((create-player get-move "O") :decision-maker))))
+    (should= get-move ((create-player get-move "O") :decision-maker)))
+
+  (it "returns the get-move function for a human"
+    (should= get-move (set-player-decision-maker "human"))))

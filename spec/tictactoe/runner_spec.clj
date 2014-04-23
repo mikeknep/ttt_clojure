@@ -1,8 +1,7 @@
 (ns tictactoe.runner-spec
   (:require [speclj.core :refer :all]
             [tictactoe.runner :refer :all]
-            [tictactoe.simple-ai :refer [choose-random-spot]]
-            [tictactoe.console-io :refer [get-move]]))
+            [tictactoe.simple-ai :refer [choose-random-spot]]))
 
 (describe "runner"
   (around [it]
