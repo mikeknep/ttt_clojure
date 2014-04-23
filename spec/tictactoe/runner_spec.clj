@@ -31,22 +31,22 @@
     (should-contain "Cat's game!\n"
       (with-out-str
         (with-in-str "n"
-          (play @draw-board @easy-x @easy-o)))))
+          (play {:board @draw-board :player-1 @easy-x :player-2 @easy-o})))))
 
   (it "ends a game that has a winner"
     (should-contain "X wins!\n"
       (with-out-str
         (with-in-str "n"
-          (play @win-board @easy-x @easy-o)))))
+          (play {:board @win-board :player-1 @easy-x :player-2 @easy-o})))))
 
   (it "plays O's turn and declares O the winner"
     (should-contain "O wins!\n"
       (with-out-str
         (with-in-str "n"
-          (play @win-for-O @easy-o @easy-x)))))
+          (play {:board @win-for-O :player-1 @easy-o :player-2 @easy-x})))))
 
   (it "plays a whole game with two easy computer players"
     (should-contain "!\n"
       (with-out-str
         (with-in-str "n"
-          (play @unplayed @easy-x @easy-o))))))
+          (play {:board @unplayed :player-1 @easy-x :player-2 @easy-o}))))))
