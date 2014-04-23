@@ -15,10 +15,8 @@
       (recur (conj all-columns (take length (iterate (partial + length) counter)))(inc counter)))))
 
 (defn diagonal-indexes [length]
-  [
-   (take length (iterate (partial + (+ 1 length)) 0))
-   (take length (iterate (partial + (- length 1)) (- length 1)))
-   ])
+  [(take length (iterate (partial + (+ 1 length)) 0))
+   (take length (iterate (partial + (- length 1)) (- length 1)))])
 
 (defn all-winning-indexes [length]
   (reduce into [(row-indexes length) (column-indexes length) (diagonal-indexes length)]))
