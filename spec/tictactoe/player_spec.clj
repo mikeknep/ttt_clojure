@@ -2,7 +2,7 @@
   (:require [speclj.core :refer :all]
             [tictactoe.player :refer :all]
             [tictactoe.simple-ai :refer [choose-random-spot]]
-            [tictactoe.console-io :refer [get-move]]))
+            [tictactoe.human-turn :refer [get-move]]))
 
 (describe "a player"
   (it "is created with a token"

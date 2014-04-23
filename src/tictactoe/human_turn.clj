@@ -1,4 +1,4 @@
-(ns tictactoe.console-io
+(ns tictactoe.human-turn
   (:require [tictactoe.rules :refer [valid-spot?]]
             [tictactoe.console-presenter :refer [format-legend]]))
 

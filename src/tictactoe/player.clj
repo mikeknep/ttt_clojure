@@ -1,5 +1,5 @@
 (ns tictactoe.player
-  (:require [tictactoe.console-io :refer [get-move]]
+  (:require [tictactoe.human-turn :refer [get-move]]
             [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]))
 

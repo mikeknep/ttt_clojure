@@ -1,6 +1,6 @@
-(ns tictactoe.console-io-spec
+(ns tictactoe.human-turn-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.console-io :refer :all]
+            [tictactoe.human-turn :refer :all]
             [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]))
 
