@@ -12,17 +12,17 @@
 
   (with easy-o    {:token "O" :decision-maker choose-random-spot})
 
-  (with win-board  ["X"  "X"  "X"
-                    "O"  "O"  nil
+  (with win-board  ["X" "X" "X"
+                    "O" "O" nil
                     nil nil nil])
 
   (with draw-board ["X" "O" "X"
                     "X" "O" "X"
                     "O" "X" "O"])
 
-  (with win-for-O ["O"  "X"  "X"
-                   nil "X"  "X"
-                   "O"  nil "O"])
+  (with win-for-O ["O" "X" "X"
+                   nil "X" "X"
+                   "O" nil "O"])
 
   (with unplayed  [nil nil nil
                    nil nil nil
