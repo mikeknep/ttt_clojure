@@ -1,6 +1,6 @@
 (ns tictactoe.runner
   (:require [tictactoe.rules :refer [game-over?]]
-            [tictactoe.console-io :refer [get-board-length get-player-decision-maker display-board declare-whose-turn declare-result play-again?]]
+            [tictactoe.console-io :refer [get-board-length get-player-token get-player-decision-maker display-board declare-whose-turn declare-result play-again?]]
             [tictactoe.gameplay :refer [take-turn]]
             [tictactoe.board :refer [create-board]]
             [tictactoe.player :refer [create-player]]))
@@ -16,11 +16,11 @@
       (display-board board)
       (if (game-over? board)
         (do (declare-result board)
-            (if (play-again?) (play (create-board (get-board-length)) (create-player "X" (get-player-decision-maker)) (create-player "O" (get-player-decision-maker)))))
+            (if (play-again?) (play (create-board (get-board-length)) (create-player (get-player-decision-maker) (get-player-token)) (create-player (get-player-decision-maker) (get-player-token)))))
         (do (declare-whose-turn current-token)
             (recur (take-turn board (next-turn-fn board current-token opponent-token) current-token)
                    opponent
                    current-player))))))
 
 (defn -main []
-  (play (create-board (get-board-length)) (create-player "X" (get-player-decision-maker)) (create-player "O" (get-player-decision-maker))))
+  (play (create-board (get-board-length)) (create-player (get-player-decision-maker) (get-player-token)) (create-player (get-player-decision-maker) (get-player-token))))

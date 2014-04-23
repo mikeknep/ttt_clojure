@@ -1,5 +1,5 @@
 (ns tictactoe.player)
 
-(defn create-player [token decision-maker]
+(defn create-player [decision-maker token]
   {:token token
    :decision-maker decision-maker})

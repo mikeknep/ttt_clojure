@@ -50,7 +50,7 @@
         (recur "That is not a valid player type. Please select 'human', 'easy computer', or 'hard computer'.")))))
 
 (defn get-player-token []
-  (loop [prompt "What token would you like to play as?"]
+  (loop [prompt "What is this player's token?"]
     (println prompt)
     (let [input (read-line)]
       (if (valid-token? input)
