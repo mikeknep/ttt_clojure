@@ -15,7 +15,7 @@
       (present-board board)
       (if (game-over? board)
         (do (present-result board)
-            (if (prompt (get-play-again)) (play (setup-new-game))))
+            (if (prompt get-play-again) (play (setup-new-game))))
         (do (present-current-player current-token)
             (recur (take-turn board (next-turn-fn board current-token opponent-token) current-token)
                    opponent
