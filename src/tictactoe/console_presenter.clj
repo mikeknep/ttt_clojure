@@ -33,23 +33,23 @@
                (inc index))))))
 
 
-(defn display-board [board]
+(defn present-board [board]
   (println (str "\n\n" (format-board board) "\n\n")))
 
 
-(defn declare-whose-turn [token]
+(defn present-current-player [token]
   (println (str token "'s turn")))
 
 
-(defn declare-draw []
+(defn present-draw []
   (println "Cat's game!"))
 
 
-(defn declare-winner [winning-token]
+(defn present-winner [winning-token]
   (println (str winning-token " wins!")))
 
 
-(defn declare-result [board]
+(defn present-result [board]
   (if (winner-present? board)
-    (declare-winner (get-winner board))
-    (declare-draw)))
+    (present-winner (get-winner board))
+    (present-draw)))
