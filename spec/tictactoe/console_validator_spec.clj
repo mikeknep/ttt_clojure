@@ -22,10 +22,7 @@
 
   (context "determining player tokens"
     (it "recognizes a token that is more than one character length as invalid"
-      (should= false (valid-token? "AB")))
-
-    (it "recognizes a token that is the same as another player's token as invalid"
-      (should= false (valid-token? "X" "X"))))
+      (should= false (valid-token? "AB"))))
 
   (context "determining if playing again"
     (it "knows 'y' is a valid play-again response"
