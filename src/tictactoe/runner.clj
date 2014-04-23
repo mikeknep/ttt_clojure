@@ -16,11 +16,11 @@
       (display-board board)
       (if (game-over? board)
         (do (declare-result board)
-            (if (play-again?) (play (create-board (get-board-length)) (create-player :x (get-player-decision-maker)) (create-player :o (get-player-decision-maker)))))
+            (if (play-again?) (play (create-board (get-board-length)) (create-player "X" (get-player-decision-maker)) (create-player "O" (get-player-decision-maker)))))
         (do (declare-whose-turn current-token)
             (recur (take-turn board (next-turn-fn board current-token opponent-token) current-token)
                    opponent
                    current-player))))))
 
 (defn -main []
-  (play (create-board (get-board-length)) (create-player :x (get-player-decision-maker)) (create-player :o (get-player-decision-maker))))
+  (play (create-board (get-board-length)) (create-player "X" (get-player-decision-maker)) (create-player "O" (get-player-decision-maker))))
