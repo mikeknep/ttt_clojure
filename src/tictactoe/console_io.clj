@@ -2,7 +2,7 @@
   (:require [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]
             [tictactoe.board :refer [board-length]]
-            [tictactoe.rules :refer [valid-spot? valid-board-length? valid-player-type? winner-present? get-winner]]))
+            [tictactoe.rules :refer [valid-spot? valid-board-length? valid-player-type? valid-token? winner-present? get-winner]]))
 
 (defn border [spot-index board-length]
   (if (== 0 (mod (+ 1 spot-index) board-length))
@@ -48,6 +48,14 @@
           "easy computer" choose-random-spot
           "hard computer" choose-best-spot)
         (recur "That is not a valid player type. Please select 'human', 'easy computer', or 'hard computer'.")))))
+
+(defn get-player-token []
+  (loop [prompt "What token would you like to play as?"]
+    (println prompt)
+    (let [input (read-line)]
+      (if (valid-token? input)
+        input
+        (recur "That token is not valid. Please select a unique, one-character token.")))))
 
 (defn display-spot [spot]
   (case spot

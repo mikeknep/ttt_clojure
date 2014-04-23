@@ -20,6 +20,13 @@
     (it "recognizes 'hard computer' as a valid player type"
       (should= true (valid-player-type? "hard computer"))))
 
+  (context "determining player tokens"
+    (it "recognizes a token that is more than one character length as invalid"
+      (should= false (valid-token? "AB")))
+
+    (it "recognizes a token that is the same as another player's token as invalid"
+      (should= false (valid-token? "X" "X"))))
+
   (context "determining spot validity"
     (with board [nil :x nil nil])
     (it "knows a spot is not valid if it has been played"

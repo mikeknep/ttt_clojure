@@ -8,6 +8,12 @@
 (defn valid-player-type? [chosen-player-type-input]
   (contains? #{"human" "easy computer" "hard computer"} chosen-player-type-input))
 
+(defn valid-token?
+  ([token]
+    (= 1 (count token)))
+  ([token existing-token]
+    (and (valid-token? token) (not= token existing-token))))
+
 (defn valid-spot? [board index]
   (and (number? index) (= nil (get board index)) (>= index 0) (< index (count board))))
 
