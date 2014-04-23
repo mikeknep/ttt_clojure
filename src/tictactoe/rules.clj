@@ -3,7 +3,7 @@
             [tictactoe.board :refer [board-length values-at-indexes]]))
 
 (defn valid-spot? [board index]
-  (and (number? index) (= nil (get board index)) (>= index 0) (< index (count board))))
+  (and (number? index) (nil? (get board index)) (>= index 0) (< index (count board))))
 
 (defn available-spots [board]
   (keep-indexed #(if (nil? %2) %1) board))
