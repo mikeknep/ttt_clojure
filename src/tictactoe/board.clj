@@ -1,7 +1,7 @@
 (ns tictactoe.board)
 
 (defn create-board [length]
-  (repeat (* length length) nil))
+  (vec (repeat (* length length) nil)))
 
 (defn board-length [board]
   (int (Math/sqrt (count board))))

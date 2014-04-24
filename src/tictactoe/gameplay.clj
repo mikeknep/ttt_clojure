@@ -3,5 +3,5 @@
 
 (defn take-turn [board index token]
   (if (valid-spot? board index)
-    (assoc (vec board) index token)
+    (assoc board index token)
     board))
