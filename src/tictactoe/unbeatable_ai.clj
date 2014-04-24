@@ -1,5 +1,5 @@
 (ns tictactoe.unbeatable-ai
-  (:require [tictactoe.rules :refer [available-spots game-over? all-spots-taken? winner-present?]]
+  (:require [tictactoe.rules :refer [available-spots game-over? all-spots-taken? winner-present? valid-spot?]]
             [tictactoe.gameplay :refer [take-turn]]))
 
 (defn simple-score [board]
@@ -23,11 +23,18 @@
     min
     max))
 
+(defn first-move? [board]
+  (< (count (distinct board)) 3))
+
+(defn choose-first-move [board]
+  (let [first-choice (quot (count board) 2)]
+    (if (valid-spot? board first-choice) first-choice 0)))
+
 
 (defn minimax [board current-token opponent-token depth]
   (if (game-over? board)
     (score-with-depth board depth)
-    (apply (min-or-max depth) (map minimax (child-boards board opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth))))))
+    (if (= depth 3) 0 (apply (min-or-max depth) (map minimax (child-boards board opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth)))))))
 
 
 (defn choose-best-spot [board current-token opponent-token]
@@ -36,10 +43,12 @@
          open-spots   (available-spots board)]
     (if (empty? open-spots)
       best-spot
-      (let [this-spot       (first open-spots)
-            altered-board   (create-altered-board board this-spot current-token)
-            this-score      (minimax altered-board current-token opponent-token 0)]
-        (recur
-          (if (> this-score best-score) this-score best-score)
-          (if (> this-score best-score) this-spot best-spot)
-          (rest open-spots))))))
+      (if (first-move? board)
+        (choose-first-move board)
+        (let [this-spot       (first open-spots)
+              altered-board   (create-altered-board board this-spot current-token)
+              this-score      (minimax altered-board current-token opponent-token 0)]
+          (recur
+            (if (> this-score best-score) this-score best-score)
+            (if (> this-score best-score) this-spot best-spot)
+            (rest open-spots)))))))
