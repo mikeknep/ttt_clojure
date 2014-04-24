@@ -1,12 +1,7 @@
 (ns tictactoe.board)
 
 (defn create-board [length]
-  (loop [spots    []
-         counter  0]
-    (if (= counter (* length length))
-      spots
-      (recur (conj spots nil)
-             (inc counter)))))
+  (repeat (* length length) nil))
 
 (defn board-length [board]
   (int (Math/sqrt (count board))))
