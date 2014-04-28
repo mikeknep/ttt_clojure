@@ -1,4 +1,4 @@
-(ns tictactoe.console.prompter)
+(ns tictactoe.console.io)
 
 (defn prompt [template]
   (loop [prompt (get template :first-prompt)]
