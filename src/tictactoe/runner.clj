@@ -14,7 +14,7 @@
           next-turn-fn    (get current-player :decision-maker)]
       (print-with-padding (present-board board :traditional))
       (if (game-over? board)
-        (do (print-with-padding (present-result board))
+        (do (println (present-result board))
             (if (prompt get-play-again) (play (setup-new-game))))
         (do (println (present-current-player current-token))
             (recur (take-turn board (next-turn-fn board current-token opponent-token) current-token)
