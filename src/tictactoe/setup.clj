@@ -4,7 +4,7 @@
             [tictactoe.console-prompter :refer [prompt get-player-type get-player-token]]))
 
 (defn setup-new-game []
-  {:board (create-board (3))
+  {:board (create-board 3)
 
    :player-1  (create-player (prompt get-player-type)
                              (prompt get-player-token))
