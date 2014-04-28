@@ -1,6 +1,6 @@
-(ns tictactoe.console.presenter-spec
+(ns tictactoe.console.text-presenter-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.console.presenter :refer :all]))
+            [tictactoe.console.text-presenter :refer :all]))
 
 (describe "console-presenter"
 
