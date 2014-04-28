@@ -4,33 +4,40 @@
 
 (describe "console-presenter"
 
-  (context "presenting a board"
-    (it "returns a pipe to separate spaces in a row"
-      (should= "|" (border 0 3)))
+  (describe "presenting a board"
+    (with board ["X" "O" nil
+                 "X" "O" nil
+                 nil nil nil])
 
-    (it "returns a new line to separate the space at the end of a row from the next row"
-      (should= "\n" (border 2 3)))
+    (describe "forming borders between spots"
+      (it "returns a pipe to separate spots in the same row"
+        (should= "|" (border 0 3)))
 
-    (it "formats a new, empty board as a string"
-      (let [board (repeat 9 nil)]
-        (should= " | | \n | | \n | | \n" (format-board board))))
+      (it "returns a new line to separate the spot at the end of a row from the next row"
+        (should= "\n" (border 2 3))))
 
-    (it "formats a board with spots that have been played into a string"
-      (let [board [nil "X" "O"
-                   nil "X" "O"
-                   nil "O" "X"]]
-        (should= " |X|O\n |X|O\n |O|X\n" (format-board board))))
+    (describe "formatting an individual spot on the board"
+      (context "for traditional display"
+        (it "returns a token for displaying a played spot"
+          (should= "X" (format-spot @board 0 :traditional)))
 
-    (it "prints a formatted board"
-      (let [board (repeat 9 nil)]
-        (should= (str "\n\n" (format-board board) "\n\n\n")
-          (with-out-str (present-board board)))))
+        (it "returns a blank space for displaying an unplayed spot"
+          (should= " " (format-spot @board 8 :traditional))))
 
-    (it "formats a legend of the available spaces' indexes"
-      (let [board [nil "X" "O"
-                   nil "X" "O"
-                   nil "O" "X"]]
-        (should= "0| | \n3| | \n6| | \n" (format-legend board)))))
+      (context "for a human-only legend to assist with console gameplay"
+        (it "returns a blank space for displaying a played spot"
+          (should= " " (format-spot @board 0 :legend)))
+        (it "returns the index value for displaying an unplayed spot"
+          (should= 8 (format-spot @board 8 :legend)))))
+
+    (describe "formatting an entire board"
+      (it "formats a board for traditional display"
+        (should= "X|O| \nX|O| \n | | \n" (format-board @board :traditional)))
+      (it "formats a board for a human player as a legend"
+        (should= " | |2\n | |5\n6|7|8\n" (format-board @board :legend)))))
+
+
+
 
   (context "presenting game conditions"
     (it "presents the current player"

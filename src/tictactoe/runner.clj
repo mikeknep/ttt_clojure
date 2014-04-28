@@ -12,7 +12,7 @@
     (let [current-token   (get current-player :token)
           opponent-token  (get opponent :token)
           next-turn-fn    (get current-player :decision-maker)]
-      (present-board board)
+      (present-board board :traditional)
       (if (game-over? board)
         (do (present-result board)
             (if (prompt get-play-again) (play (setup-new-game))))

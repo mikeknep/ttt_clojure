@@ -8,33 +8,23 @@
     "\n"
     "|"))
 
+(defn format-spot [board index display-type]
+  (cond
+    (= :traditional display-type) (if (nil? (board index)) " " (board index))
+    (= :legend display-type)      (if (nil? (board index)) index " ")))
 
-(defn format-legend [board]
-  (let [length (board-length board)]
-    (loop [board          board
-           legend-string  ""
-           index          0]
-      (if (empty? board)
-        legend-string
-        (recur (rest board)
-               (str legend-string (if (nil? (first board)) index " ") (border index length))
-               (inc index))))))
-
-
-(defn format-board [board]
-  (let [length (board-length board)]
-    (loop [board          board
-           board-string   ""
-           index          0]
-      (if (empty? board)
-        board-string
-        (recur (rest board)
-               (str board-string (if (nil? (first board)) " " (first board)) (border index length))
-               (inc index))))))
+(defn format-board [board display-type]
+  (loop [string ""
+         index  0]
+    (if (= (count board) index)
+      string
+      (recur (str string (format-spot board index display-type) (border index (board-length board)))
+             (inc index)))))
 
 
-(defn present-board [board]
-  (println (str "\n\n" (format-board board) "\n\n")))
+
+(defn present-board [board display-type]
+  (println (str "\n\n" (format-board board display-type) "\n\n")))
 
 
 (defn present-current-player [token]
