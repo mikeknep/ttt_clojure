@@ -46,7 +46,7 @@
         (with-out-str (present-winner "X"))))
 
     (it "presents the correct game result"
-      (let [board ["X"  "X"  "X"
+      (let [board ["X" "X" "X"
                    nil nil nil
                    nil nil nil]]
         (should= "X wins!\n"

@@ -4,7 +4,9 @@
 
 (describe "rules"
   (context "determining spot validity"
-    (with board [nil "X" nil nil])
+    (with board [nil "X" nil
+                 nil nil nil
+                 nil nil nil])
     (it "knows a spot is not valid if it has been played"
       (should= false (valid-spot? @board 1)))
 
@@ -12,7 +14,7 @@
       (should= false (valid-spot? @board -1)))
 
     (it "knows a spot is not valid if it is greater than or equal to the number of spots"
-      (should= false (valid-spot? @board 4))))
+      (should= false (valid-spot? @board 10))))
 
   (it "recognizes the first move of a game"
     (let [board [nil nil nil
@@ -21,16 +23,22 @@
       (should= true (first-move? board))))
 
   (it "returns the available spots"
-    (let [board ["X" nil nil "O"]]
+    (let [board ["X" nil nil
+                 "O" "X" "O"
+                 "X" "X" "O"]]
       (should= [1 2] (available-spots board))))
 
   (context "checking for a draw"
     (it "recognizes all spots as being taken"
-      (let [board ["X" "O" "X" "O"]]
+      (let [board ["X" "O" "X"
+                   "X" "O" "X"
+                   "O" "X" "O"]]
         (should= true (all-spots-taken? board))))
 
     (it "recognizes spots still open to be played"
-      (let [board ["X" "O" "X" nil]]
+      (let [board ["X" "O" "X"
+                   nil nil nil
+                   nil nil nil]]
         (should= false (all-spots-taken? board)))))
 
 
@@ -74,7 +82,7 @@
         (should= true (game-over? board)))))
 
   (it "gets the winning token from a board with a winner"
-    (let [board ["O" "O"  "O"
+    (let [board ["O" "O" "O"
                  "X" nil "X"
                  "X" nil "X"]]
       (should= "O" (get-winner board)))))

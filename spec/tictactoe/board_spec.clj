@@ -7,12 +7,14 @@
     (should= [nil] (distinct (create-board 3))))
 
   (it "has a number of spots equal to the square of the length"
-    (should= 16 (count (create-board 4))))
+    (should= 9 (count (create-board 3))))
 
   (it "has a length equal to the square root of the number of spots"
     (should= 3 (board-length (create-board 3))))
 
   (it "returns the tokens at provided indexes"
     (let [indexes [0 2 4]
-          board   ["X" nil "O" nil nil]]
+          board   ["X" nil "O"
+                   nil nil nil
+                   nil nil nil]]
       (should= ["X" "O" nil] (values-at-indexes indexes board)))))
