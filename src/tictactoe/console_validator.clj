@@ -1,8 +1,5 @@
 (ns tictactoe.console-validator)
 
-(defn valid-board-length? [chosen-length-input]
-  (contains? #{"3" "4"} chosen-length-input))
-
 (defn valid-player-type? [chosen-player-type-input]
   (contains? #{"human" "easy computer" "hard computer"} chosen-player-type-input))
 

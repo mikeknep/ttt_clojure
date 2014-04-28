@@ -3,13 +3,6 @@
             [tictactoe.console-validator :refer :all]))
 
 (describe "console-validator"
-  (context "determining board size"
-    (it "recognizes '3' as a valid board size"
-      (should= true (valid-board-length? "3")))
-
-    (it "does not recognize '3x3' as a valid board size"
-      (should= false (valid-board-length? "3x3"))))
-
   (context "determining player types"
     (it "recognizes 'human' as a valid player type"
       (should= true (valid-player-type? "human")))

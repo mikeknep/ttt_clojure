@@ -1,5 +1,5 @@
 (ns tictactoe.console-prompter
-  (:require [tictactoe.console-validator :refer [valid-board-length? valid-player-type? valid-token? valid-play-again-response?]]
+  (:require [tictactoe.console-validator :refer [valid-player-type? valid-token? valid-play-again-response?]]
             [tictactoe.player :refer [set-player-decision-maker]]))
 
 (def get-player-type
