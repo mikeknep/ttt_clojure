@@ -41,7 +41,7 @@
 
 
 
-  (context "presenting strings about game conditions"
+  (describe "presenting strings about game conditions"
     (it "returns a string announcing the current player"
       (should= "X's turn" (present-current-player "X")))
 
