@@ -3,12 +3,9 @@
             [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]))
 
-(defn create-player [decision-maker token]
+(defn create-player [player-type token]
   {:token token
-   :decision-maker decision-maker})
-
-(defn set-player-decision-maker [player-type]
-  (case player-type
-    "human"           get-move
-    "easy computer"   choose-random-spot
-    "hard computer"   choose-best-spot))
+   :decision-maker (case player-type
+                     "human"          get-move
+                     "easy computer"  choose-random-spot
+                     "hard computer"  choose-best-spot)})
