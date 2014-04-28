@@ -1,7 +1,7 @@
 (ns tictactoe.runner
   (:require [tictactoe.rules :refer [game-over?]]
-            [tictactoe.console.prompter :refer [prompt print-with-padding get-play-again]]
-            [tictactoe.console.text-presenter :refer [present-current-player present-result]]
+            [tictactoe.console.prompter :refer [prompt print-with-padding]]
+            [tictactoe.console.text-presenter :refer [present-current-player present-result get-play-again]]
             [tictactoe.console.board-presenter :refer [present-board]]
             [tictactoe.gameplay :refer [take-turn]]
             [tictactoe.setup :refer [setup-new-game]]))
