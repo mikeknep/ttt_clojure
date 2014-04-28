@@ -1,6 +1,6 @@
 (ns tictactoe.runner
   (:require [tictactoe.rules :refer [game-over?]]
-            [tictactoe.console-prompter :refer [prompt get-board-length get-player-type get-player-token get-play-again]]
+            [tictactoe.console-prompter :refer [prompt get-play-again]]
             [tictactoe.console-presenter :refer [present-board present-current-player present-result]]
             [tictactoe.gameplay :refer [take-turn]]
             [tictactoe.setup :refer [setup-new-game]]))
