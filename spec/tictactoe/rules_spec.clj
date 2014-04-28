@@ -14,6 +14,12 @@
     (it "knows a spot is not valid if it is greater than or equal to the number of spots"
       (should= false (valid-spot? @board 4))))
 
+  (it "recognizes the first move of a game"
+    (let [board [nil nil nil
+                 nil nil nil
+                 nil nil nil]]
+      (should= true (first-move? board))))
+
   (it "returns the available spots"
     (let [board ["X" nil nil "O"]]
       (should= [1 2] (available-spots board))))

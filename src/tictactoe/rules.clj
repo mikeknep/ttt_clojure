@@ -5,6 +5,9 @@
 (defn valid-spot? [board index]
   (and (number? index) (nil? (get board index)) (>= index 0) (< index (count board))))
 
+(defn first-move? [board]
+  (= [nil] (distinct board)))
+
 (defn available-spots [board]
   (keep-indexed #(if (nil? %2) %1) board))
 

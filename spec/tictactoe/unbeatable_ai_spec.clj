@@ -68,43 +68,11 @@
       (should= max (min-or-max 3))))
 
   (context "the opening move"
-    (it "knows when it is player 1's first move"
+   (it "chooses the middle spot (4) on an empty board"
       (let [board [nil nil nil
                    nil nil nil
                    nil nil nil]]
-        (should= true (first-move? board))))
-
-    (it "knows when it is player 2's first move"
-      (let [board ["x" nil nil
-                   nil nil nil
-                   nil nil nil]]
-        (should= true (first-move? board))))
-
-    (it "chooses the middle spot (4) on a 3x3 board if it is open"
-      (let [board [nil nil nil
-                   nil nil nil
-                   nil nil nil]]
-        (should= 4 (choose-first-move board))))
-
-    (it "chooses the top corner spot (0) on a 3x3 board if the middle is taken"
-      (let [board [nil nil nil
-                   nil "x" nil
-                   nil nil nil]]
-        (should= 0 (choose-first-move board))))
-
-    (it "chooses spot 8 on a 4x4 board if it is open"
-      (let [board [nil nil nil nil
-                   nil nil nil nil
-                   nil nil nil nil
-                   nil nil nil nil]]
-        (should= 8 (choose-first-move board))))
-
-    (it "chooses spot 0 on a 4x4 board if spot 8 is taken"
-      (let [board [nil nil nil nil
-                   nil nil nil nil
-                   "x" nil nil nil
-                   nil nil nil nil]]
-        (should= 0 (choose-first-move board)))))
+        (should= 4 (choose-best-spot board "X" "O")))))
 
 
   ;
