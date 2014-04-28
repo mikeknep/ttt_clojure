@@ -1,4 +1,4 @@
-(ns tictactoe.console-presenter
+(ns tictactoe.console.presenter
   (:require [tictactoe.board :refer [board-length]]
             [tictactoe.rules :refer [winner-present? get-winner]]))
 

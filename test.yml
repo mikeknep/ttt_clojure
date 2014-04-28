@@ -1,0 +1,19 @@
+---
+getplayertype:
+  p1: What type of player is this? (''human'' ''easy computer'' or ''hard computer'')
+  p2: That is not a valid player type. Please input ''human'' ''easy computer'' or ''hard computer''.
+  validity: \#(contains? \#{"human" "easy computer" "hard computer"} %)
+  followup: eval
+
+getplayertoken:
+  p1: What is this player''s token?
+  p2: That is not a valid token. Please select a one-character token.
+  validity: \#(= 1 (count %))
+  followup: eval
+
+getplayagain:
+  p1: Do you want to play again? (y/n)
+  p2: Do you want to play again or not? (y/n)
+  validity: \#(contains? \#{"y" "n"} %)
+  followup: \#(= "y" %)
+...

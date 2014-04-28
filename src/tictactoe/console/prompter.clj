@@ -1,4 +1,4 @@
-(ns tictactoe.console-prompter)
+(ns tictactoe.console.prompter)
 
 (def get-player-type
   {:first-prompt "What type of player is this? ('human' 'easy computer' or 'hard computer')"

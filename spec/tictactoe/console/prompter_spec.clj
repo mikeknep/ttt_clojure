@@ -1,6 +1,6 @@
-(ns tictactoe.console-prompter-spec
+(ns tictactoe.console.prompter-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.console-prompter :refer :all]))
+            [tictactoe.console.prompter :refer :all]))
 
 (describe "console-prompter"
   (around [it]

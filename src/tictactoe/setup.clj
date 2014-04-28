@@ -1,7 +1,7 @@
 (ns tictactoe.setup
   (:require [tictactoe.board :refer [create-board]]
             [tictactoe.player :refer [create-player]]
-            [tictactoe.console-prompter :refer [prompt get-player-type get-player-token]]))
+            [tictactoe.console.prompter :refer [prompt get-player-type get-player-token]]))
 
 (defn setup-new-game []
   {:board (create-board 3)
