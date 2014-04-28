@@ -11,6 +11,7 @@
                        :validity-checker #(= "foo" %)
                        :followup-fn count})
 
+  (context "prompting the user for input"
   (it "prints the first prompt"
     (should-contain "Hello\n"
       (with-out-str
@@ -27,3 +28,8 @@
       (with-out-str
         (with-in-str "bar\nfoo"
           (prompt @mock-template))))))
+
+  (context "printing to the screen without expecting human input"
+    (it "adds padding to a string"
+      (should-contain "\n\nHello world!\n\n\n"
+        (with-out-str (print-with-padding "Hello world!"))))))

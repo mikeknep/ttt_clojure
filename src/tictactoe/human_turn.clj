@@ -1,12 +1,12 @@
 (ns tictactoe.human-turn
   (:require [tictactoe.rules :refer [valid-spot?]]
-            [tictactoe.console-presenter :refer [format-board]]))
+            [tictactoe.console-presenter :refer [present-board]]))
 
 
 (defn get-move [board & args]
   (loop [prompt "Where do you want to go next?"]
     (println prompt)
-    (println (format-board board :legend))
+    (println (present-board board :legend))
     (let [input (read-line)]
       (if (valid-spot? board (read-string input))
         (read-string input)
