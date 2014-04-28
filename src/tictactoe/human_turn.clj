@@ -1,6 +1,6 @@
 (ns tictactoe.human-turn
   (:require [tictactoe.rules :refer [valid-spot?]]
-            [tictactoe.console.presenter :refer [present-board]]))
+            [tictactoe.console.board-presenter :refer [present-board]]))
 
 
 (defn get-move [board & args]
