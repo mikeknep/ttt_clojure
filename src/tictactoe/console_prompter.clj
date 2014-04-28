@@ -2,12 +2,6 @@
   (:require [tictactoe.console-validator :refer [valid-board-length? valid-player-type? valid-token? valid-play-again-response?]]
             [tictactoe.player :refer [set-player-decision-maker]]))
 
-(def get-board-length
-  {:first-prompt "What board length do you want to play on? (3 or 4)"
-   :second-prompt "That is not a valid board length. Please input the number of rows you want on the board as an integer (3 or 4)."
-   :validity-checker valid-board-length?
-   :followup-fn read-string})
-
 (def get-player-type
   {:first-prompt "What type of player is this? ('human' 'easy computer' or 'hard computer')"
    :second-prompt "That is not a valid player type. Please input 'human' 'easy computer' or 'hard computer'."
