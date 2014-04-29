@@ -2,6 +2,9 @@
   (:require [tictactoe.board :refer [board-length]]
             [tictactoe.rules :refer [winner-present? get-winner]]))
 
+(defn parse [file line-number]
+  (nth (with-open [rdr (clojure.java.io/reader file)] (reduce conj [] (line-seq rdr))) line-number))
+
 (defn present-current-player [token]
   (str token "'s turn"))
 

@@ -2,8 +2,7 @@
   (:require [speclj.core :refer :all]
             [tictactoe.console.text-presenter :refer :all]))
 
-(describe "console-presenter"
-
+(describe "text-presenter"
   (describe "presenting strings about game conditions"
     (it "returns a string announcing the current player"
       (should= "X's turn" (present-current-player "X")))
@@ -18,4 +17,14 @@
       (let [board ["X" "X" "X"
                    nil nil nil
                    nil nil nil]]
-        (should= "X wins!" (present-result board))))))
+        (should= "X wins!" (present-result board)))))
+
+
+  (describe "parsing a file"
+    (with mock-file "mock.txt")
+
+    (it "returns a line from a file"
+      (should= "Hello world!" (parse @mock-file 0)))
+
+    (it "only returns one line"
+      (should= "This is a separate line." (parse @mock-file 1)))))
