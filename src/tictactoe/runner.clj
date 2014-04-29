@@ -3,6 +3,7 @@
             [tictactoe.console.io :refer [prompt print-with-padding]]
             [tictactoe.console.text-presenter :refer [present-current-player present-result get-play-again]]
             [tictactoe.human-turn :refer [get-move]]
+            [tictactoe.player :refer [human?]]
             [tictactoe.console.board-presenter :refer [present-board]]
             [tictactoe.gameplay :refer [take-turn]]
             [tictactoe.setup :refer [setup-new-game]]))
@@ -19,7 +20,7 @@
         (do (println (present-result board))
             (if (prompt get-play-again) (play (setup-new-game))))
         (do (println (present-current-player current-token))
-            (if (= next-turn-fn get-move) (println (present-board board :legend)))
+            (if (human? current-player) (println (present-board board :legend)))
             (recur (take-turn board (next-turn-fn board current-token opponent-token) current-token)
                    opponent
                    current-player))))))
