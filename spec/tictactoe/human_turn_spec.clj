@@ -4,7 +4,7 @@
             [tictactoe.simple-ai :refer [choose-random-spot]]
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]))
 
-(describe "console io"
+(describe "human turn"
   (around [it]
     (with-out-str (it)))
 

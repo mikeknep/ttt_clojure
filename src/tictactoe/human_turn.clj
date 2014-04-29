@@ -1,5 +1,5 @@
 (ns tictactoe.human-turn
-  (:require [tictactoe.rules :refer [valid-spot?]])
+  (:require [tictactoe.rules :refer [valid-spot?]]))
 
 
 (defn get-move [board & args]
