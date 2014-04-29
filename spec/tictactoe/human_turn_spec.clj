@@ -5,12 +5,20 @@
             [tictactoe.unbeatable-ai :refer [choose-best-spot]]))
 
 (describe "human turn"
+  (with board [nil "X" nil
+               nil nil nil
+               nil nil nil])
+
   (around [it]
     (with-out-str (it)))
 
-  (it "asks for a move and returns an integer"
+
+  (it "waits for input and returns an integer"
     (should= 3
       (with-in-str "3"
-        (get-move [nil "X" nil
-                   nil nil nil
-                   nil nil nil])))))
+        (get-move @board))))
+
+  (it "does not complete until a valid spot is entered, and only returns the valid spot input"
+    (should= 3
+      (with-in-str "1\n3"
+        (get-move @board)))))
