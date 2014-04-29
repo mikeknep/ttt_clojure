@@ -9,3 +9,6 @@
                      "human"          get-move
                      "easy computer"  choose-random-spot
                      "hard computer"  choose-best-spot)})
+
+(defn human? [player]
+  (= get-move (get player :decision-maker)))
