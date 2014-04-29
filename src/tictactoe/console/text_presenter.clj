@@ -17,10 +17,13 @@
     (present-draw)))
 
 (def get-player-type
-  {:first-prompt "What type of player is this? ('human' 'easy computer' or 'hard computer')"
-   :second-prompt "That is not a valid player type. Please input 'human' 'easy computer' or 'hard computer'."
-   :validity-checker #(contains? #{"human" "easy computer" "hard computer"} %)
-   :followup-fn eval})
+  {:first-prompt "What type of player is this? (1: human, 2: easy computer, 3: hard computer)"
+   :second-prompt "That is not a valid player type. Please input 1 for human, 2 for easy computer, or 3 for hard computer."
+   :validity-checker #(contains? #{"1" "2" "3"} %)
+   :followup-fn #(case %
+                       "1" "human"
+                       "2" "easy computer"
+                       "3" "hard computer")})
 
 (def get-player-token
   {:first-prompt "What is this player's token?"
@@ -29,7 +32,7 @@
    :followup-fn eval})
 
 (def get-play-again
-  {:first-prompt "Play again? (y/n)"
-   :second-prompt "Do you want to play again or not? (y/n)"
-   :validity-checker #(contains? #{"y" "n"} %)
-   :followup-fn #(= "y" %)})
+  {:first-prompt "Play again? (1: yes, 2: no)"
+   :second-prompt "Do you want to play again or not? (Input 1 to play again. Input 2 to quit.)"
+   :validity-checker #(contains? #{"1" "2"} %)
+   :followup-fn #(= "1" %)})

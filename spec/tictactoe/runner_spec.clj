@@ -27,26 +27,28 @@
                    nil nil nil
                    nil nil nil])
 
+  (with do-not-play-again "2")
+
   (it "ends a game that is a draw"
     (should-contain "Cat's game!\n"
       (with-out-str
-        (with-in-str "n"
+        (with-in-str @do-not-play-again
           (play {:board @draw-board :player-1 @easy-x :player-2 @easy-o})))))
 
   (it "ends a game that has a winner"
     (should-contain "X wins!\n"
       (with-out-str
-        (with-in-str "n"
+        (with-in-str @do-not-play-again
           (play {:board @win-board :player-1 @easy-x :player-2 @easy-o})))))
 
   (it "plays O's turn and declares O the winner"
     (should-contain "O wins!\n"
       (with-out-str
-        (with-in-str "n"
+        (with-in-str @do-not-play-again
           (play {:board @win-for-O :player-1 @easy-o :player-2 @easy-x})))))
 
   (it "plays a whole game with two easy computer players"
     (should-contain "!\n"
       (with-out-str
-        (with-in-str "n"
+        (with-in-str @do-not-play-again
           (play {:board @unplayed :player-1 @easy-x :player-2 @easy-o}))))))
