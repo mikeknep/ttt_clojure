@@ -1,0 +1,9 @@
+Current player:
+Draw!
+Winner:
+What type of player is this? (1: human, 2: easy computer, 3: hard computer)
+That is not a valid player type. Please input 1 for human, 2 for easy computer, or 3 for hard computer.
+What is this player's token?
+That is not a valid token. Please select a unique, one-character token.
+Do you want to play again? (1: yes, 2: exit)
+Please input 1 to play again or 2 to exit.
