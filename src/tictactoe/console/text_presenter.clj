@@ -1,15 +1,15 @@
 (ns tictactoe.console.text-presenter
-  (:require [tictactoe.board :refer [board-length]]
+  (:require [tictactoe.parser :refer :all]
             [tictactoe.rules :refer [winner-present? get-winner]]))
 
 (defn present-current-player [token]
-  (str token "'s turn"))
+  (str current-player-text " " token))
 
 (defn present-draw []
-  "Cat's game!")
+  draw-text)
 
 (defn present-winner [token]
-  (str token " wins!"))
+  (str winner-text " " token))
 
 (defn present-result [board]
   (if (winner-present? board)
@@ -17,8 +17,8 @@
     (present-draw)))
 
 (def get-player-type
-  {:first-prompt "What type of player is this? (1: human, 2: easy computer, 3: hard computer)"
-   :second-prompt "That is not a valid player type. Please input 1 for human, 2 for easy computer, or 3 for hard computer."
+  {:first-prompt player-type-prompt-1
+   :second-prompt player-type-prompt-2
    :validity-checker #(contains? #{"1" "2" "3"} %)
    :followup-fn #(case %
                        "1" "human"
@@ -26,13 +26,13 @@
                        "3" "hard computer")})
 
 (def get-player-token
-  {:first-prompt "What is this player's token?"
-   :second-prompt "That is not a valid token. Please select a unique, one-character token."
+  {:first-prompt player-token-prompt-1
+   :second-prompt player-token-prompt-2
    :validity-checker #(= 1 (count %))
    :followup-fn eval})
 
 (def get-play-again
-  {:first-prompt "Play again? (1: yes, 2: no)"
-   :second-prompt "Do you want to play again or not? (Input 1 to play again. Input 2 to quit.)"
+  {:first-prompt play-again-prompt-1
+   :second-prompt play-again-prompt-2
    :validity-checker #(contains? #{"1" "2"} %)
    :followup-fn #(= "1" %)})
