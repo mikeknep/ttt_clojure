@@ -3,7 +3,7 @@
             [tictactoe.parser :refer :all]))
 
 (describe "parser"
-  (with mock-file "mock.txt")
+  (with mock-file "spec/mock.txt")
 
   (it "returns a line from a file"
     (should= "Hello world!" (parse @mock-file 0)))
