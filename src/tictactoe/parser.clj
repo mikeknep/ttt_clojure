@@ -3,29 +3,32 @@
 (defn parse [file line-number]
   (nth (with-open [rdr (clojure.java.io/reader file)] (reduce conj [] (line-seq rdr))) line-number))
 
+(def language-source
+  "translations/english.txt")
+
 (def current-player-text
-  (parse "translations/english.txt" 0))
+  (parse language-source 0))
 
 (def draw-text
-  (parse "translations/english.txt" 1))
+  (parse language-source 1))
 
 (def winner-text
-  (parse "translations/english.txt" 2))
+  (parse language-source 2))
 
 (def player-type-prompt-1
-  (parse "translations/english.txt" 3))
+  (parse language-source 3))
 
 (def player-type-prompt-2
-  (parse "translations/english.txt" 4))
+  (parse language-source 4))
 
 (def player-token-prompt-1
-  (parse "translations/english.txt" 5))
+  (parse language-source 5))
 
 (def player-token-prompt-2
-  (parse "translations/english.txt" 6))
+  (parse language-source 6))
 
 (def play-again-prompt-1
-  (parse "translations/english.txt" 7))
+  (parse language-source 7))
 
 (def play-again-prompt-2
-  (parse "translations/english.txt" 8))
+  (parse language-source 8))
