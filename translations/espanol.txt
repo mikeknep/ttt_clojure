@@ -1,0 +1,9 @@
+Jugador actual:
+Empate.
+Ganador:
+Qué tipo de jugador es? (1: humana, 2: ordenador fácil, 3: ordenador difícil)
+Eso no es un tipo de jugador válida. Por favor ingrese 1 para humana, 2 para ordenador fácil, o 3 para ordenador difícil.
+Qué es el símbolo de este jugador?
+Eso no es un símbolo válido. Por favor ingrese un símbolo único, un carácter.
+Quieres jugar otra vez? (1: sí, 2: no)
+Por favor ingrese 1 para jugar otra vez o 2 para salir.
