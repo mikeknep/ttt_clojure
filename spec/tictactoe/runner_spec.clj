@@ -1,6 +1,8 @@
 (ns tictactoe.runner-spec
   (:require [speclj.core :refer :all]
             [tictactoe.runner :refer :all]
+            [tictactoe.console.text-presenter :refer [present-result]]
+            [tictactoe.gameplay :refer [take-turn]]
             [tictactoe.simple-ai :refer [choose-random-spot]]))
 
 (describe "runner"
@@ -30,25 +32,21 @@
   (with do-not-play-again "2")
 
   (it "ends a game that is a draw"
-    (should-contain #"[[D|d]raw|[C|c]at's game]"
-      (with-out-str
-        (with-in-str @do-not-play-again
-          (play {:board @draw-board :player-1 @easy-x :player-2 @easy-o})))))
+    (should-invoke present-result {:times 1}
+      (with-in-str @do-not-play-again
+        (play {:board @draw-board :player-1 @easy-x :player-2 @easy-o}))))
 
   (it "ends a game that has a winner"
-    (should-contain #"[W|w]in"
-      (with-out-str
-        (with-in-str @do-not-play-again
-          (play {:board @win-board :player-1 @easy-x :player-2 @easy-o})))))
+    (should-invoke present-result {:times 1}
+      (with-in-str @do-not-play-again
+        (play {:board @win-board :player-1 @easy-x :player-2 @easy-o}))))
 
   (it "plays O's turn and declares O the winner"
-    (should-contain #"[C|c]urrent player"
-      (with-out-str
-        (with-in-str @do-not-play-again
-          (play {:board @win-for-O :player-1 @easy-o :player-2 @easy-x})))))
+    (should-invoke take-turn {:times 1}
+      (with-in-str @do-not-play-again
+        (play {:board @win-for-O :player-1 @easy-o :player-2 @easy-x}))))
 
   (it "plays a whole game with two easy computer players"
-    (should-contain #"[P|p]lay again"
-      (with-out-str
-        (with-in-str @do-not-play-again
-          (play {:board @unplayed :player-1 @easy-x :player-2 @easy-o}))))))
+    (should-invoke present-result {:times 1}
+      (with-in-str @do-not-play-again
+        (play {:board @unplayed :player-1 @easy-x :player-2 @easy-o})))))
