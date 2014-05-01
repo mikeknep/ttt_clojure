@@ -3,7 +3,7 @@
             [tictactoe.board :refer [board-length values-at-indexes]]))
 
 (defn valid-spot? [board index]
-  (and (number? index) (nil? (get board index)) (>= index 0) (< index (count board))))
+  (and (number? index) (>= index 0) (< index (count board)) (nil? (board index))))
 
 (defn first-move? [board]
   (= [nil] (distinct board)))

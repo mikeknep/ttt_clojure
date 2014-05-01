@@ -9,12 +9,12 @@
             [tictactoe.setup :refer [setup-new-game]]))
 
 (defn play [new-game]
-  (loop [board          (get new-game :board)
-         current-player (get new-game :player-1)
-         opponent       (get new-game :player-2)]
-    (let [current-token   (get current-player :token)
-          opponent-token  (get opponent :token)
-          next-turn-fn    (get current-player :decision-maker)]
+  (loop [board          (new-game :board)
+         current-player (new-game :player-1)
+         opponent       (new-game :player-2)]
+    (let [current-token   (current-player :token)
+          opponent-token  (opponent :token)
+          next-turn-fn    (current-player :decision-maker)]
       (print-with-padding (present-board board :traditional))
       (if (game-over? board)
         (do (println (present-result board))

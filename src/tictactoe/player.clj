@@ -11,4 +11,4 @@
                      "hard computer"  choose-best-spot)})
 
 (defn human? [player]
-  (= get-move (get player :decision-maker)))
+  (= get-move (player :decision-maker)))
