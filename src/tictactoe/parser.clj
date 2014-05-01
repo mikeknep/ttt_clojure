@@ -1,8 +1,11 @@
 (ns tictactoe.parser
   (:require [tictactoe.language :refer [language-source]]))
 
-(defn parse [file line-number]
-  (nth (with-open [rdr (clojure.java.io/reader file)] (reduce conj [] (line-seq rdr))) line-number))
+(defn parse
+  ([file]
+    (slurp file))
+  ([file line-number]
+    (nth (with-open [rdr (clojure.java.io/reader file)] (reduce conj [] (line-seq rdr))) line-number)))
 
 (def current-player-text
   (parse (language-source) 0))
