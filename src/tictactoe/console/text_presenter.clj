@@ -1,5 +1,5 @@
 (ns tictactoe.console.text-presenter
-  (:require [tictactoe.parser :refer :all]
+  (:require [tictactoe.raw-text :refer :all]
             [tictactoe.rules :refer [winner-present? get-winner]]))
 
 (defn present-current-player [token]
