@@ -13,3 +13,12 @@ To chose a spot on the board, input its index number--the board is zero-indexed 
 3 | 4 | 5
 
 6 | 7 | 8
+
+
+## Foreign Language Support
+
+To play in a foreign language, follow these two steps:
+
+1. The English game prompts can be found at `translations/english.txt`. Translate each line into the language of your choice, and save it as [language].txt in the same "translations" directory. (Example: `translations/french.txt`)
+
+2. Change the language setting in the `config.txt` file (found at the project root directory) to the new language. The name should be the same as the translation file's filename (but can be upcased, ex: "French").
