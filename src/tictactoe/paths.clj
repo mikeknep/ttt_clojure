@@ -3,14 +3,14 @@
 (defn row-indexes [length]
   (loop [all-rows   []
          counter    0]
-    (if (== counter length)
+    (if (= counter length)
       all-rows
       (recur (conj all-rows (take length (iterate inc (* length counter)))) (inc counter)))))
 
 (defn column-indexes [length]
   (loop [all-columns  []
          counter      0]
-    (if (== counter length)
+    (if (= counter length)
       all-columns
       (recur (conj all-columns (take length (iterate (partial + length) counter)))(inc counter)))))
 
