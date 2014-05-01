@@ -19,9 +19,7 @@
   (map create-altered-board (repeat board) (available-spots board) (repeat token)))
 
 (defn min-or-max [depth]
-  (if (even? depth)
-    min
-    max))
+  (if (even? depth) min max))
 
 (defn choose-middle-spot [board]
   4)
@@ -30,7 +28,9 @@
 (defn minimax [board current-token opponent-token depth]
   (if (game-over? board)
     (score-with-depth board depth)
-    (if (= depth 5) 0 (apply (min-or-max depth) (map minimax (child-boards board opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth)))))))
+    (if (= depth 5)
+      0
+      (apply (min-or-max depth) (map minimax (child-boards board opponent-token) (repeat opponent-token) (repeat current-token) (repeat (+ 1 depth)))))))
 
 
 (defn choose-best-spot [board current-token opponent-token]
