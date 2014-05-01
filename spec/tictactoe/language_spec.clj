@@ -1,9 +1,13 @@
 (ns tictactoe.language-spec
   (:require [speclj.core :refer :all]
-            [tictactoe.language :refer :all]))
+            [tictactoe.language :refer :all]
+            [tictactoe.parser :refer [parse]]))
 
 (describe "language"
-  (with-stubs)
+  (it "returns the language from the config file"
+    (with-redefs [parse (fn [_] (str "{:language \"Pig-Latin\"}\n"))]
+      (should= "Pig-Latin" (language))))
+
   (it "returns the english text file when language is set to English"
     (with-redefs [language #(str "English")]
       (should= "translations/english.txt" (language-source))))
