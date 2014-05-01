@@ -7,9 +7,9 @@
     "|"))
 
 (defn present-spot [board index display-type]
-  (cond
-    (= :traditional display-type) (if (nil? (board index)) " " (board index))
-    (= :legend display-type)      (if (nil? (board index)) index " ")))
+  (case display-type
+    :traditional (if (nil? (board index)) " " (board index))
+    :legend      (if (nil? (board index)) index " ")))
 
 (defn present-board [board display-type]
   (loop [string ""
