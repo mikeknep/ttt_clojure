@@ -5,10 +5,11 @@
 
 (defn create-player [player-type token]
   {:token token
+   :type player-type
    :decision-maker (case player-type
                      "human"          get-move
                      "easy computer"  choose-random-spot
                      "hard computer"  choose-best-spot)})
 
 (defn human? [player]
-  (= get-move (player :decision-maker)))
+  (= "human" (player :type)))
