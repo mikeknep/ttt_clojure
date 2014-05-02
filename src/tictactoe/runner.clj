@@ -1,6 +1,6 @@
 (ns tictactoe.runner
   (:require [tictactoe.rules :refer [game-over?]]
-            [tictactoe.console.io :refer [prompt print-with-padding]]
+            [tictactoe.console.io :refer [prompt]]
             [tictactoe.console.text-presenter :refer [present-with-padding present-current-player present-result get-play-again]]
             [tictactoe.player :refer [human?]]
             [tictactoe.console.board-presenter :refer [present-board]]
