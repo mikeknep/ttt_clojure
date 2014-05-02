@@ -29,7 +29,4 @@
         (with-in-str "bar\nfoo"
           (prompt @mock-template))))))
 
-  (context "printing to the screen without expecting human input"
-    (it "adds padding to a string"
-      (should-contain "\n\nHello world!\n\n\n"
-        (with-out-str (print-with-padding "Hello world!"))))))
+  (context "displaying text on the screen without expecting human input"))

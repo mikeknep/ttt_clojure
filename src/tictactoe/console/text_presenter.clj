@@ -2,6 +2,9 @@
   (:require [tictactoe.raw-text :refer :all]
             [tictactoe.rules :refer [winner-present? get-winner]]))
 
+(defn present-with-padding [string]
+  (str "\n\n" string "\n\n"))
+
 (defn present-current-player [token]
   (str current-player-text " " token))
 

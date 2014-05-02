@@ -7,6 +7,3 @@
       (if ((template :validity-checker) input)
         ((template :followup-fn) input)
         (recur (template :second-prompt))))))
-
-(defn print-with-padding [text]
-  (println (str "\n\n" text "\n\n")))

@@ -3,6 +3,9 @@
             [tictactoe.console.text-presenter :refer :all]))
 
 (describe "text-presenter"
+  (it "adds padding to a string"
+    (should= "\n\nHello World!\n\n" (present-with-padding "Hello World!")))
+
   (describe "presenting a string with a token"
     (it "returns a string that includes the current player's token"
       (should-contain "X" (present-current-player "X")))

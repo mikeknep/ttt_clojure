@@ -1,7 +1,7 @@
 (ns tictactoe.runner
   (:require [tictactoe.rules :refer [game-over?]]
             [tictactoe.console.io :refer [prompt print-with-padding]]
-            [tictactoe.console.text-presenter :refer [present-current-player present-result get-play-again]]
+            [tictactoe.console.text-presenter :refer [present-with-padding present-current-player present-result get-play-again]]
             [tictactoe.player :refer [human?]]
             [tictactoe.console.board-presenter :refer [present-board]]
             [tictactoe.gameplay :refer [take-turn]]
@@ -14,7 +14,7 @@
     (let [current-token   (current-player :token)
           opponent-token  (opponent :token)
           next-turn-fn    (current-player :decision-maker)]
-      (print-with-padding (present-board board :traditional))
+      (println (present-with-padding (present-board board :traditional)))
       (if (game-over? board)
         (do (println (present-result board))
             (if (prompt get-play-again) (play (setup-new-game))))
