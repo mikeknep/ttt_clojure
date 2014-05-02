@@ -7,3 +7,6 @@
       (if ((template :validity-checker) input)
         ((template :followup-fn) input)
         (recur (template :second-prompt))))))
+
+(defn display [string]
+  (println string))

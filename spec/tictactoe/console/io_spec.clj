@@ -29,4 +29,7 @@
         (with-in-str "bar\nfoo"
           (prompt @mock-template))))))
 
-  (context "displaying text on the screen without expecting human input"))
+  (context "displaying text on the screen without expecting human input"
+    (it "prints to the screen"
+      (should= "Hello world!\n"
+        (with-out-str (display "Hello world!"))))))
