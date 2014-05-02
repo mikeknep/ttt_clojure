@@ -2,7 +2,6 @@
   (:require [tictactoe.rules :refer [game-over?]]
             [tictactoe.console.io :refer [prompt print-with-padding]]
             [tictactoe.console.text-presenter :refer [present-current-player present-result get-play-again]]
-            [tictactoe.human-turn :refer [get-move]]
             [tictactoe.player :refer [human?]]
             [tictactoe.console.board-presenter :refer [present-board]]
             [tictactoe.gameplay :refer [take-turn]]
