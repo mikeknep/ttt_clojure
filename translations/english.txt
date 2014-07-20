@@ -1,9 +1,11 @@
-Current player:
-Draw!
-Winner:
-What type of player is this? (1: human, 2: easy computer, 3: hard computer)
-That is not a valid player type. Please input 1 for human, 2 for easy computer, or 3 for hard computer.
-What is this player's token?
-That is not a valid token. Please select a unique, one-character token.
-Do you want to play again? (1: yes, 2: exit)
-Please input 1 to play again or 2 to exit.
+{
+:current-player "Current player:"
+:draw "Draw!"
+:winner "Winner:"
+:player-type-prompt-1 "What type of player is this? (1: human, 2: easy computer, 3: hard computer)"
+:player-type-prompt-2 "That is not a valid player type. Please input 1 for human, 2 for easy computer, or 3 for hard computer."
+:player-token-prompt-1 "What is this player's token?"
+:player-token-prompt-2 "That is not a valid token. Please select a unique, one-character token."
+:play-again-prompt-1 "Do you want to play again? (1: yes, 2: exit)"
+:play-again-prompt-2 "Please input 1 to play again or 2 to exit."
+}

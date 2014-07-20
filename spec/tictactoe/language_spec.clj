@@ -5,7 +5,7 @@
 
 (describe "language"
   (it "returns the language from the config file"
-    (with-redefs [parse (fn [_] (str "{:language \"Pig-Latin\"}\n"))]
+    (with-redefs [parse (fn [_] {:language "Pig-Latin"})]
       (should= "Pig-Latin" (language))))
 
   (it "returns the english text file when language is set to English"

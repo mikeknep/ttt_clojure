@@ -3,28 +3,28 @@
             [tictactoe.language :refer [language-source]]))
 
 (def current-player-text
-  (parse (language-source) 0))
+  ((parse (language-source)) :current-player))
 
 (def draw-text
-  (parse (language-source) 1))
+  ((parse (language-source)) :draw))
 
 (def winner-text
-  (parse (language-source) 2))
+  ((parse (language-source)) :winner))
 
 (def player-type-prompt-1
-  (parse (language-source) 3))
+  ((parse (language-source)) :player-type-prompt-1))
 
 (def player-type-prompt-2
-  (parse (language-source) 4))
+  ((parse (language-source)) :player-type-prompt-2))
 
 (def player-token-prompt-1
-  (parse (language-source) 5))
+  ((parse (language-source)) :player-token-prompt-1))
 
 (def player-token-prompt-2
-  (parse (language-source) 6))
+  ((parse (language-source)) :player-token-prompt-2))
 
 (def play-again-prompt-1
-  (parse (language-source) 7))
+  ((parse (language-source)) :play-again-prompt-1))
 
 (def play-again-prompt-2
-  (parse (language-source) 8))
+  ((parse (language-source)) :play-again-prompt-2))
