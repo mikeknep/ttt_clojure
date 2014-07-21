@@ -1,18 +1,10 @@
 (ns tictactoe.paths)
 
 (defn- row-indexes [length]
-  (loop [all-rows   []
-         counter    0]
-    (if (= counter length)
-      all-rows
-      (recur (conj all-rows (take length (iterate inc (* length counter)))) (inc counter)))))
+  (partition length (range (* length length))))
 
 (defn- column-indexes [length]
-  (loop [all-columns  []
-         counter      0]
-    (if (= counter length)
-      all-columns
-      (recur (conj all-columns (take length (iterate (partial + length) counter)))(inc counter)))))
+  (apply mapv vector (row-indexes length)))
 
 (defn- diagonal-indexes [length]
   [(take length (iterate (partial + (+ 1 length)) 0))

@@ -7,9 +7,4 @@
   (int (Math/sqrt (count board))))
 
 (defn values-at-indexes [indexes board]
-  (loop [indexes  indexes
-         tokens   []]
-    (if (empty? indexes)
-      tokens
-      (recur (rest indexes)
-             (conj tokens (nth board (first indexes)))))))
+  (map nth (repeat board) indexes))
