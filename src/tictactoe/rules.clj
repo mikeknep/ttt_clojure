@@ -14,7 +14,7 @@
 (defn all-spots-taken? [board]
   (= 0 (count (filter (fn [spot] (= spot nil)) board))))
 
-(defn winner-in-collection? [tokens]
+(defn- winner-in-collection? [tokens]
   (and (= 1 (count (distinct tokens))) (not= nil (first (distinct tokens)))))
 
 (defn winner-present? [board]

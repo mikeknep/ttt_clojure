@@ -42,21 +42,7 @@
         (should= false (all-spots-taken? board)))))
 
 
-  (context "checking a single path for a winner"
-    (it "returns true for a winning collection"
-      (let [tokens  ["X" "X" "X"]]
-        (should= true (winner-in-collection? tokens))))
-
-    (it "returns false if a collection has multiple tokens"
-      (let [tokens ["X" "O" "X"]]
-        (should= false (winner-in-collection? tokens))))
-
-    (it "returns false if a collection has all empty spaces"
-      (let [tokens [nil nil nil]]
-        (should= false (winner-in-collection? tokens)))))
-
-
-  (context "checking the whole board for a winner"
+  (context "checking the board for a winner"
     (it "returns true for a board with a winner"
       (let [board ["X" nil nil
                    "X" nil nil

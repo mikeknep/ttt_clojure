@@ -1,12 +1,12 @@
 (ns tictactoe.console.board-presenter
   (:require [tictactoe.board :refer [board-length]]))
 
-(defn border [spot-index board-length]
+(defn- border [spot-index board-length]
   (if (== 0 (mod (+ 1 spot-index) board-length))
     "\n"
     "|"))
 
-(defn present-spot [board index display-type]
+(defn- present-spot [board index display-type]
   (case display-type
     :traditional (if (nil? (board index)) " " (board index))
     :legend      (if (nil? (board index)) index " ")))

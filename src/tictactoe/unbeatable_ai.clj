@@ -2,30 +2,30 @@
   (:require [tictactoe.rules :refer [first-move? available-spots game-over? all-spots-taken? winner-present? valid-spot?]]
             [tictactoe.gameplay :refer [take-turn]]))
 
-(defn simple-score [board]
+(defn- simple-score [board]
   (if (winner-present? board)
     1.0
     0.0))
 
-(defn score-with-depth [board depth]
+(defn- score-with-depth [board depth]
   (if (zero? (simple-score board))
     0
     (* (/ (simple-score board) (double depth)) (reduce * (repeat depth -1)))))
 
-(defn create-altered-board [board index token]
+(defn- create-altered-board [board index token]
   (take-turn board index token))
 
-(defn child-boards [board token]
+(defn- child-boards [board token]
   (map create-altered-board (repeat board) (available-spots board) (repeat token)))
 
-(defn min-or-max [depth]
+(defn- min-or-max [depth]
   (if (even? depth) min max))
 
-(defn choose-middle-spot [board]
+(defn- choose-middle-spot [board]
   4)
 
 
-(defn minimax [board current-token opponent-token depth]
+(defn- minimax [board current-token opponent-token depth]
   (if (game-over? board)
     (score-with-depth board depth)
     (if (= depth 5)
